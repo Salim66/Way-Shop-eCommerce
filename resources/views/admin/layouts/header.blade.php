@@ -279,12 +279,19 @@
                             height="45" alt="user"></a>
                     <ul class="dropdown-menu">
                         <li>
+                            <h4 class="text-center">{{ Auth::user()->name }}</h4>
+                        </li>
+                        <li>
                             <a href="profile.html">
                                 <i class="fa fa-user"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a></li>
-                        <li><a href="login.html">
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out"></i> Signout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </li>

@@ -15,6 +15,14 @@ class AdminController extends Controller
     }
 
     /**
+     * Admin login page
+     */
+    public function login()
+    {
+        return view('admin.users.login');
+    }
+
+    /**
      * Admin dashboard page
      */
     public function dashboard()
