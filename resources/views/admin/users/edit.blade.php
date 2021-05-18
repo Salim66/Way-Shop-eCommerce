@@ -27,7 +27,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('admin.user.update', $data->id) }}" method="POST" class="col-sm-12">
+                        <form action="{{ route('admin.user.update', $data->id) }}" method="POST" class="col-sm-12"
+                            id="userEditform">
                             @csrf
                             @method('PATCH')
                             <div class="form-group col-sm-6">
@@ -69,4 +70,43 @@
     </section>
     <!-- /.content -->
 </div>
+<script>
+    $(function(){
+        $("#userEditform").validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                user_type: 'required',
+            },
+            messages: {
+                name: "Please enter your name",
+                email: {
+                    required: "Please enter your email",
+                    email: "Your email address must be in the format of name@domain.com"
+                },
+                user_type: "Select any user type",
+            },
+            errorElement: "span",
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
+<style>
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 @endsection
