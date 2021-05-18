@@ -23,6 +23,11 @@
     <link href="{{ asset('admin/assets/')}}/dist/css/stylecrm.css" rel="stylesheet" type="text/css" />
     <!-- Theme style rtl -->
     <!--<link href="{{ asset('admin/assets/')}}//dist/css/stylecrm-rtl.css" rel="stylesheet" type="text/css"/>-->
+    <!-- jQuery JS -->
+    <link href="{{ asset('admin/assets/')}}/dist/js/jquery.min.js" rel="stylesheet" type="text/css" />
+    <!-- Toastr CSS -->
+    <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -94,6 +99,9 @@
     <script src="{{ asset('admin/assets/')}}/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
     <!-- bootstrap js -->
     <script src="{{ asset('admin/assets/')}}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- Toaster Js-->
+    <script src="{{ asset('admin/assets/')}}/dist/js/toastr.min.js" type="text/javascript"></script>
+    @include('validation')
 </body>
 
 <!-- Mirrored from thememinister.com/crm/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Jun 2019 11:09:03 GMT -->
