@@ -28,6 +28,9 @@
 <script src="{{ asset('admin/assets/')}}/plugins/counterup/waypoints.js" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/')}}/plugins/counterup/jquery.counterup.min.js" type="text/javascript">
 </script>
+<!-- Bootstrap toggle -->
+<script src="{{ asset('admin/assets/')}}/plugins/bootstrap-toggle/bootstrap-toggle.min.js" type="text/javascript">
+</script>
 <!-- Monthly js -->
 <script src="{{ asset('admin/assets/')}}/plugins/monthly/monthly.js" type="text/javascript"></script>
 <!-- End Page Lavel Plugins
@@ -40,6 +43,8 @@
     =====================================================================-->
 <!-- Toaster Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/toastr.min.js" type="text/javascript"></script>
+<!-- Custom Js-->
+<script src="{{ asset('admin/assets/')}}/dist/js/custom/custom.js" type="text/javascript"></script>
 
 
 

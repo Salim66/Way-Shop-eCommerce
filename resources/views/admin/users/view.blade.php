@@ -55,8 +55,12 @@
                                         <td>{{ $user->name }}</td>
                                         <td><span class="label-custom label label-default">{{ $user->user_type }}</span>
                                         </td>
-                                        <td>
-                                            {{-- <input type="checkbox" class="btn btn-success" data-toggle="toggle"> --}}
+                                        <td width="8%">
+                                            <input type="checkbox" class="user_status_update btn btn-success"
+                                                data-toggle="toggle" data-size="mini" data-on="Active"
+                                                data-off="Inactive" data-id="{{ $user->id }}" data-onstyle="success"
+                                                @if($user->status == 1)
+                                            checked @endif>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal"

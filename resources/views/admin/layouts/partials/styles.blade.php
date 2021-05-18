@@ -35,7 +35,10 @@
 <!-- Theme style rtl -->
 <!--<link href="{{ asset('admin/assets/')}}//dist/css/stylecrm-rtl.css" rel="stylesheet" type="text/css"/>-->
 <!-- End Theme Layout Style
-    =====================================================================-->
+<!-- Bootstrap toggle css -->
+<link href="{{ asset('admin/assets/')}}/plugins/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet"
+    type="text/css" />
+<!--=====================================================================-->
 <!-- Toastr CSS -->
 <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />
 <!-- jQuery -->

@@ -30,4 +30,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', 'App\Http\Controllers\UserController@view')->name('admin.users');
     Route::get('/users/add', 'App\Http\Controllers\UserController@add')->name('admin.user.add');
     Route::post('/users/store', 'App\Http\Controllers\UserController@store')->name('admin.user.store');
+    Route::post('/users/status-update', 'App\Http\Controllers\UserController@userStatusUpdate');
 });

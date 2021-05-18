@@ -48,4 +48,15 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Password does not match!');
         }
     }
+
+    /**
+     * User status update
+     */
+    public function userStatusUpdate(Request $request)
+    {
+        User::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->back();
+    }
 }
