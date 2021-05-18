@@ -43,6 +43,8 @@
     =====================================================================-->
 <!-- Toaster Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/toastr.min.js" type="text/javascript"></script>
+<!-- Sweetalert js -->
+<script src="{{ asset('admin/assets/')}}/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <!-- Custom Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/custom/custom.js" type="text/javascript"></script>
 

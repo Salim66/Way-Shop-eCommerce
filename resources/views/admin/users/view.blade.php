@@ -62,11 +62,16 @@
                                                 @if($user->status == 1)
                                             checked @endif>
                                         </td>
-                                        <td>
+                                        <td width="10%" class="text-center">
                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal"
                                                 data-target="#update"><i class="fa fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                            <form style="display: inline"
+                                                action="{{ route('admin.user.delete', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" id="delete" class="btn btn-danger btn-sm"><i
+                                                        class="fa fa-trash-o"></i> </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

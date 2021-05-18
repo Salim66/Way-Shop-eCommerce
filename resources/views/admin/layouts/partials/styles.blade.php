@@ -38,6 +38,8 @@
 <!-- Bootstrap toggle css -->
 <link href="{{ asset('admin/assets/')}}/plugins/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet"
     type="text/css" />
+<!-- Sweetalert -->
+<link href="{{ asset('admin/assets/')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
 <!--=====================================================================-->
 <!-- Toastr CSS -->
 <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />

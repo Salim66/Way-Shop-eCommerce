@@ -59,4 +59,18 @@ class UserController extends Controller
         ]);
         return redirect()->back();
     }
+
+    /**
+     * User delete
+     */
+    public function userDelete($id)
+    {
+        $user = User::find($id);
+        if ($user != NULL) {
+            $user->delete();
+        } else {
+            return redirect()->back()->with('error', 'Sorry! User is not found! ');
+        }
+        return redirect()->back()->with('success', 'User deleted successfully ): ');
+    }
 }
