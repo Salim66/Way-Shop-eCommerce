@@ -32,4 +32,6 @@ Route::prefix('admin')->group(function () {
     Route::post('/users/store', 'App\Http\Controllers\UserController@store')->name('admin.user.store');
     Route::post('/users/status-update', 'App\Http\Controllers\UserController@userStatusUpdate');
     Route::delete('/users/delete/{id}', 'App\Http\Controllers\UserController@userDelete')->name('admin.user.delete');
+    Route::get('/users/edit/{id}', 'App\Http\Controllers\UserController@userEdit')->name('admin.user.edit');
+    Route::patch('/users/update/{id}', 'App\Http\Controllers\UserController@userUpdate')->name('admin.user.update');
 });

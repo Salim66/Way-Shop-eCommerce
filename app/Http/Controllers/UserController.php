@@ -73,4 +73,37 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'User deleted successfully ): ');
     }
+
+    /**
+     * User edit
+     */
+    public function userEdit($id)
+    {
+        $data = User::find($id);
+        return view('admin.users.edit', compact('data'));
+    }
+
+    /**
+     * User update
+     */
+    public function userUpdate(Request $request, $id)
+    {
+        $data = User::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'name'      => 'required',
+                'email'     => 'required',
+                'user_type' => 'required',
+            ]);
+
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->user_type = $request->user_type;
+            $data->update();
+
+            return redirect()->route('admin.users')->with('success', 'Data updated successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! data not found. ');
+        }
+    }
 }
