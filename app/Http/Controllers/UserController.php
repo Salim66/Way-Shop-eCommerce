@@ -177,4 +177,30 @@ class UserController extends Controller
             return redirect()->route('user.profile.view')->with('success', 'User profile updated successfully ): ');
         }
     }
+
+    /**
+     * User change password
+     */
+    public function userChangePassword()
+    {
+        return view('admin.users.user_change_password');
+    }
+
+    /**
+     * User change passwrod update
+     */
+    public function userChangePasswordUpdate(Request $request)
+    {
+        $user_id = Auth::id();
+        $data = User::find($user_id);
+        if ($data != NULL) {
+            if (Auth::attempt(['email' => $data->email, 'password' => $request->current_password])) {
+                $data->password = password_hash($request->new_password, PASSWORD_DEFAULT);
+                $data->update();
+                return redirect()->route('user.profile.view')->with('success', 'Your password uddated successfully ): ');
+            } else {
+                return redirect()->back()->with('error', 'Sorry! your password and email do not match our record.');
+            }
+        }
+    }
 }

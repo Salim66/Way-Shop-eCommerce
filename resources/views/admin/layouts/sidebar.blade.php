@@ -37,7 +37,7 @@ $route = Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('user.profile.view') }}">View User</a></li>
-                    <li><a href="clist.html">Change Password</a></li>
+                    <li><a href="{{ route('user.change.password') }}">Change Password</a></li>
                 </ul>
             </li>
             <li>

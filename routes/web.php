@@ -41,4 +41,6 @@ Route::prefix('/user')->group(function () {
     Route::get('/profile/view', 'App\Http\Controllers\UserController@profileView')->name('user.profile.view');
     Route::get('/profile/edit/{id}', 'App\Http\Controllers\UserController@profileEdit')->name('user.profile.edit');
     Route::put('/profile/update/{id}', 'App\Http\Controllers\UserController@profileUpdate')->name('user.profile.update');
+    Route::get('/change/password', 'App\Http\Controllers\UserController@userChangePassword')->name('user.change.password');
+    Route::post('/change/password/update', 'App\Http\Controllers\UserController@userChangePasswordUpdate')->name('user.change.password.update');
 });
