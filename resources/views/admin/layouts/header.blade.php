@@ -275,8 +275,8 @@
                 <!-- user -->
                 <li class="dropdown dropdown-user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('admin/assets/')}}//dist/img/avatar5.png" class="img-circle" width="45"
-                            height="45" alt="user"></a>
+                        <img src="{{ URL::to('') }}/uploads/users/{{ Auth::user()->photo }}" class="img-circle"
+                            width="45" height="45" alt="" onerror="this.src='/uploads/users/avatar3.png';"></a>
                     <ul class="dropdown-menu">
                         <li>
                             <h4 class="text-center">{{ Auth::user()->name }}</h4>

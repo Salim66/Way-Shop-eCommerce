@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
 
+@section('title', 'User Profile')
+
 @section('main-content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -18,9 +20,9 @@
                 <div class="card">
                     <div class="card-header">
                         {{-- <div class="card-header-headshot"></div> --}}
-                        <img src="{{ URL::to('') }}/uploads/users/avatar3.png"
+                        <img src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}"
                             style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid #fff;"
-                            class="shadow" alt="">
+                            class="shadow" alt="" onerror="this.src='/uploads/users/avatar3.png';">
                     </div>
                     <div class="card-content">
                         <div class="card-content-member text-center">
@@ -55,7 +57,8 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="" class="text-white btn btn-block btn-success"
+                        <a href="{{ route('user.profile.edit', $data->id) }}"
+                            class="text-white btn btn-block btn-success"
                             style="height: 40px; font-size: 16px; border-radius: 0px 20px 20px 0px"><i
                                 class="fa fa-pencil text-white"></i>
                             Edit

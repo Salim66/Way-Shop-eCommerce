@@ -63,6 +63,12 @@
                 });
          });
 
+         //user profile load
+         $(document).on('change', '#user_photo', function(event){
+             let image_url = URL.createObjectURL(event.target.files[0]);
+             $('#user_photo_load').attr('src', image_url);
+         });
+
 
     });
 })(jQuery);

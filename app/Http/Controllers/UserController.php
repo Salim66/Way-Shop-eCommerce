@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -119,5 +120,61 @@ class UserController extends Controller
         $user_id = Auth::id();
         $data = User::find($user_id);
         return view('admin.users.user_profile', compact('data'));
+    }
+
+    /**
+     * User profile edit
+     */
+    public function profileEdit($id)
+    {
+        $data = User::find($id);
+        return view('admin.users.user_profile_edit', compact('data'));
+    }
+
+    /**
+     * User profile update
+     */
+    public function profileUpdate(Request $request, $id)
+    {
+        $data = User::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'name'    => 'required',
+                'email'   => 'required | unique:users,email,' . $data->id,
+                'mobile'  => 'required',
+                'address' => 'required',
+                'city'    => 'required',
+                'state'   => 'required',
+                'country' => 'required',
+                'pincode' => 'required',
+            ]);
+
+            $unique_image_name = '';
+            //photo unique name and  upload directory
+            if ($request->hasFile('photo')) {
+                $image = $request->file('photo');
+                $unique_image_name = md5(time() . rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->save('uploads/users/' . $unique_image_name);
+                $image->move(public_path('uploads/users/'), $unique_image_name);
+                if (file_exists('uploads/users/' . $request->photo) && !empty($data->photo)) {
+                    unlink('uploads/users/' . $request->photo);
+                }
+            } else {
+                $unique_image_name = $data->photo;
+            }
+
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->mobile = $request->mobile;
+            $data->address = $request->address;
+            $data->city = $request->city;
+            $data->state = $request->state;
+            $data->country = $request->country;
+            $data->pincode = $request->pincode;
+            $data->photo = $unique_image_name;
+            $data->update();
+
+            return redirect()->back()->with('success', 'User profile updated successfully ): ');
+        }
     }
 }

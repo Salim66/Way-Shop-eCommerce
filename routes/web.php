@@ -39,4 +39,6 @@ Route::prefix('admin')->group(function () {
 Route::prefix('/user')->group(function () {
     //user profile route
     Route::get('/profile/view', 'App\Http\Controllers\UserController@profileView')->name('user.profile.view');
+    Route::get('/profile/edit/{id}', 'App\Http\Controllers\UserController@profileEdit')->name('user.profile.edit');
+    Route::put('/profile/update/{id}', 'App\Http\Controllers\UserController@profileUpdate')->name('user.profile.update');
 });
