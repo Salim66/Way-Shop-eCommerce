@@ -1,7 +1,7 @@
 <!-- Start Core Plugins
          =====================================================================-->
 <!-- jQuery -->
-<script src="{{ asset('admin/assets/')}}/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
+
 <!-- jquery-ui -->
 <script src="{{ asset('admin/assets/')}}/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript">
 </script>
@@ -40,6 +40,24 @@
     =====================================================================-->
 <!-- Toaster Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/toastr.min.js" type="text/javascript"></script>
+
+
+
+@if(session()->has('success'))
+<script type="text/javascript">
+    $(function(){
+			$.notify("{{session()->get('success')}}", {globalPosition: 'top right', className:'success'});
+        });
+</script>
+@endif
+@if(session()->has('error'))
+<script type="text/javascript">
+    $(function(){
+			$.notify("{{session()->get('error')}}", {globalPosition: 'top right', className:'error'});
+        });
+</script>
+@endif
+
 
 <script>
     function dash() {

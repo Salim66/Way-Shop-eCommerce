@@ -11,6 +11,13 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.users') }}">
+                    <i class="fa fa-user-circle"></i><span>User</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i><span>Customers</span>

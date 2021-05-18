@@ -23,7 +23,7 @@
     <link href="{{ asset('admin/assets/')}}/dist/css/stylecrm.css" rel="stylesheet" type="text/css" />
     <!-- Theme style rtl -->
     <!--<link href="{{ asset('admin/assets/')}}//dist/css/stylecrm-rtl.css" rel="stylesheet" type="text/css"/>-->
-    <!-- jQuery JS -->
+    <!-- jQuery -->
     <link href="{{ asset('admin/assets/')}}/dist/js/jquery.min.js" rel="stylesheet" type="text/css" />
     <!-- Toastr CSS -->
     <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />

@@ -38,3 +38,11 @@
     =====================================================================-->
 <!-- Toastr CSS -->
 <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />
+<!-- jQuery -->
+<script src="{{ asset('admin/assets/')}}/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('admin/assets/')}}/dist/js/notify.js"></script>
+<style type="text/css">
+    .notifyjs-corner {
+        z-index: 10000 !important;
+    }
+</style>
