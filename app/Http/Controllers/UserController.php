@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -108,5 +109,15 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('error', 'Sorry! data not found. ');
         }
+    }
+
+    /**
+     * User Profile View
+     */
+    public function profileView()
+    {
+        $user_id = Auth::id();
+        $data = User::find($user_id);
+        return view('admin.users.user_profile', compact('data'));
     }
 }

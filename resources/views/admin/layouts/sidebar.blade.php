@@ -1,3 +1,8 @@
+@php
+$prefix = Request::route()->getPrefix();
+$route = Route::current()->getName();
+@endphp
+
 <!-- =============================================== -->
 <!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
@@ -5,30 +10,34 @@
     <div class="sidebar">
         <!-- sidebar menu -->
         <ul class="sidebar-menu">
-            <li class="active">
+            <li>
                 <a href="{{ route('admin.dashboard') }}"><i class="fa fa-tachometer"></i><span>Dashboard</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="treeview {{(@$prefix == '/admin')? 'active' : ""}}">
                 <a href="{{ route('admin.users') }}">
                     <i class="fa fa-user-circle"></i><span>User</span>
-                    <span class="pull-right-container">
-                    </span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users"></i><span>Customers</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="add-customer.html">Add Customer</a></li>
-                    <li><a href="clist.html">List</a></li>
-                    <li><a href="group.html">Groups</a></li>
+                    <li><a href="{{ route('admin.user.add') }}">Add User</a></li>
+                    <li><a href="{{ route('admin.users') }}">User List</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{(@$prefix == '/user')? 'active' : ""}}">
+                <a href="#">
+                    <i class="fa fa-user-circle-o"></i><span>User Profile</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('user.profile.view') }}">View User</a></li>
+                    <li><a href="clist.html">Change Password</a></li>
                 </ul>
             </li>
             <li>

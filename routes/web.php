@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', 'App\Http\Controllers\AdminController@login')->name('admin.login');
     Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
 
-    // users routes
+    // Admin users routes
     Route::get('/users', 'App\Http\Controllers\UserController@view')->name('admin.users');
     Route::get('/users/add', 'App\Http\Controllers\UserController@add')->name('admin.user.add');
     Route::post('/users/store', 'App\Http\Controllers\UserController@store')->name('admin.user.store');
@@ -34,4 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::delete('/users/delete/{id}', 'App\Http\Controllers\UserController@userDelete')->name('admin.user.delete');
     Route::get('/users/edit/{id}', 'App\Http\Controllers\UserController@userEdit')->name('admin.user.edit');
     Route::patch('/users/update/{id}', 'App\Http\Controllers\UserController@userUpdate')->name('admin.user.update');
+});
+
+Route::prefix('/user')->group(function () {
+    //user profile route
+    Route::get('/profile/view', 'App\Http\Controllers\UserController@profileView')->name('user.profile.view');
 });
