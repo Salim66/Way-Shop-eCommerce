@@ -279,13 +279,9 @@
                             width="45" height="45" alt="" onerror="this.src='/uploads/users/avatar3.png';"></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <h4 class="text-center">{{ Auth::user()->name }}</h4>
-                        </li>
-                        <li>
-                            <a href="profile.html">
+                            <a href="{{ route('user.profile.view') }}">
                                 <i class="fa fa-user"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out"></i> Signout</a>

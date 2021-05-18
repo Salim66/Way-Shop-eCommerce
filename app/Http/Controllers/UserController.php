@@ -174,7 +174,7 @@ class UserController extends Controller
             $data->photo = $unique_image_name;
             $data->update();
 
-            return redirect()->back()->with('success', 'User profile updated successfully ): ');
+            return redirect()->route('user.profile.view')->with('success', 'User profile updated successfully ): ');
         }
     }
 }
