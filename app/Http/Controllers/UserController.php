@@ -67,6 +67,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($user != NULL) {
+            if (file_exists('uploads/users/' . $user->photo) && !empty($user->photo)) {
+                unlink('uploads/users/' . $user->photo);
+            }
             $user->delete();
         } else {
             return redirect()->back()->with('error', 'Sorry! User is not found! ');
