@@ -18,7 +18,7 @@ class IndexController extends Controller
         $categories = Category::whereNULL('parent_id')->with(['categories' => function ($query) {
             $query->withCount('products');
         }])->get();
-        $products = Product::where('status', 1)->latest()->get();
+        $products = Product::where('status', 1)->latest()->paginate(6);
         return view('wayshop.index', compact('categories', 'products'));
     }
 }

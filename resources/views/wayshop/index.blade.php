@@ -157,6 +157,7 @@
                                     @endforeach
 
                                 </div>
+
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
 
@@ -203,6 +204,7 @@
 
                             </div>
                         </div>
+                        {{ $products->links('pagination::bootstrap-4') }}
                     </div>
 
                 </div>
