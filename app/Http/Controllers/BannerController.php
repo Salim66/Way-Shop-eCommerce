@@ -84,4 +84,13 @@ class BannerController extends Controller
             return redirect()->back()->with('error', 'Sorry! does not found any data');
         }
     }
+
+    /**
+     * Banner edit 
+     */
+    public function edit($id)
+    {
+        $data = Banner::find($id);
+        return view('admin.banner.edit_banner', compact('data'));
+    }
 }

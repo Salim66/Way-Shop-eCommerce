@@ -81,4 +81,6 @@ Route::prefix('banners')->group(function () {
     Route::post('/store', 'App\Http\Controllers\BannerController@store')->name('banners.store');
     Route::post('/status-update', 'App\Http\Controllers\BannerController@statusUpdate');
     Route::delete('/delete/{id}', 'App\Http\Controllers\BannerController@delete')->name('banners.delete');
+    Route::get('/edit/{id}', 'App\Http\Controllers\BannerController@edit')->name('banners.edit');
+    Route::patch('/update/{id}', 'App\Http\Controllers\BannerController@update')->name('banners.update');
 });
