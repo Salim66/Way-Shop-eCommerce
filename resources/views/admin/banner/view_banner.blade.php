@@ -61,7 +61,7 @@
                                         <td>{{ $data->text_style }}</td>
                                         <td>{{ $data->link }}</td>
                                         <td width="8%">
-                                            <input type="checkbox" class="product_status_update btn btn-success"
+                                            <input type="checkbox" class="banner_status_update btn btn-success"
                                                 data-toggle="toggle" data-size="mini" data-on="Active"
                                                 data-off="Inactive" data-id="{{ $data->id }}" data-onstyle="success"
                                                 @if($data->status == 1)

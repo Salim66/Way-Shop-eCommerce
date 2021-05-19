@@ -195,6 +195,44 @@
              $('#banner_image_load').attr('src', image_url);
          });
 
+         // Banner status update
+         $('.banner_status_update').change(function(){
+             let id = $(this).attr('data-id');
+            
+             // Input checkbox checked or unchecked undec jQueey prop() function
+             if($(this).prop("checked") == true){
+                 $.ajax({
+                     headers: {
+                         'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                     },
+                     type: "POST",
+                     url: "/banners/status-update",
+                     data: {id: id, status: 1},
+                     success: function(data){
+                         $.notify("Banner Active", {globalPosition: 'top right', className: 'success'});
+                     },
+                     error: function(data){
+                        $.notify("Sorry! something is wrong", {globalPosition: 'top right', className: 'danger'});
+                     }
+                 });
+             }else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/banners/status-update",
+                    data: {id: id, status: 0},
+                    success: function(data){
+                        $.notify("Banner Inactive", {globalPosition: 'top right', className: 'error'});
+                    },
+                    error: function(data){
+                       $.notify("Sorry! something is wrong", {globalPosition: 'top right', className: 'danger'});
+                    }
+                });
+             }
+         });
+
 
     });
 })(jQuery);

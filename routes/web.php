@@ -79,4 +79,5 @@ Route::prefix('banners')->group(function () {
     Route::get('/view', 'App\Http\Controllers\BannerController@view')->name('banners.view');
     Route::get('/add', 'App\Http\Controllers\BannerController@add')->name('banners.add');
     Route::post('/store', 'App\Http\Controllers\BannerController@store')->name('banners.store');
+    Route::post('/status-update', 'App\Http\Controllers\BannerController@statusUpdate')->name('/status-update');
 });

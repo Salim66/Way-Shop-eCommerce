@@ -56,4 +56,15 @@ class BannerController extends Controller
 
         return redirect()->back()->with('success', 'Banner added successfully ): ');
     }
+
+    /**
+     * Banner status update
+     */
+    public function statusUpdate(Request $request)
+    {
+        Banner::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+        return redirect()->back();
+    }
 }
