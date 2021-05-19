@@ -54,6 +54,18 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('categories.add') }}">Add Category</a></li>
                 </ul>
             </li>
+            <li class="treeview {{(@$prefix == '/products')? 'active' : ""}}">
+                <a href="#">
+                    <i class="fa fa-product-hunt"></i><span>Products</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('products.view') }}">View Products</a></li>
+                    <li><a href="{{ route('categories.add') }}">Add Category</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="company.html">
                     <i class="fa fa-home"></i> <span>Companies</span>

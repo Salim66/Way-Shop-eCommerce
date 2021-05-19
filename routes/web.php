@@ -24,6 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Dashboard route
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
 
+// Route for admin user create
 Route::prefix('admin')->group(function () {
     //Admin login and register route
     Route::get('/register', 'App\Http\Controllers\AdminController@register')->name('admin.register');
@@ -40,6 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::patch('/users/update/{id}', 'App\Http\Controllers\UserController@userUpdate')->name('admin.user.update');
 });
 
+// Route for admin users profile update
 Route::prefix('/user')->group(function () {
     //user profile route
     Route::get('/profile/view', 'App\Http\Controllers\UserController@profileView')->name('user.profile.view');
@@ -49,6 +51,7 @@ Route::prefix('/user')->group(function () {
     Route::post('/change/password/update', 'App\Http\Controllers\UserController@userChangePasswordUpdate')->name('user.change.password.update');
 });
 
+// Route for category
 Route::prefix('categories')->group(function () {
     Route::get('/view', 'App\Http\Controllers\CategoryController@view')->name('categories.view');
     Route::get('/add', 'App\Http\Controllers\CategoryController@add')->name('categories.add');
@@ -57,4 +60,9 @@ Route::prefix('categories')->group(function () {
     Route::delete('/delete/{id}', 'App\Http\Controllers\CategoryController@delete')->name('categories.delete');
     Route::get('/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('categories.edit');
     Route::patch('/update/{id}', 'App\Http\Controllers\CategoryController@update')->name('categories.update');
+});
+
+// Route for products
+Route::prefix('products')->group(function () {
+    Route::get('/view', 'App\Http\Controllers\ProductController@view')->name('products.view');
 });
