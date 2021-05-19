@@ -66,7 +66,7 @@
                                             <a title="Edit" href="{{ route('admin.user.edit', $category->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
                                             <form style="display: inline"
-                                                action="{{ route('admin.user.delete', $category->id) }}" method="POST">
+                                                action="{{ route('categories.delete', $category->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete" type="submit" id="delete"

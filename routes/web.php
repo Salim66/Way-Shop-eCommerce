@@ -54,4 +54,5 @@ Route::prefix('categories')->group(function () {
     Route::get('/add', 'App\Http\Controllers\CategoryController@add')->name('categories.add');
     Route::post('/store', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
     Route::post('/status-update', 'App\Http\Controllers\CategoryController@statusUpdate');
+    Route::delete('/delete/{id}', 'App\Http\Controllers\CategoryController@delete')->name('categories.delete');
 });
