@@ -74,7 +74,7 @@
                                 <a class="list-group-item list-group-item-action" href="#sub-men1"
                                     data-toggle="collapse" aria-expanded="true"
                                     aria-controls="sub-men1">{{ $category->name }} <small
-                                        class="text-muted">(100)</small>
+                                        class="text-muted">({{ count($category->categories) }})</small>
                                 </a>
                                 <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
                                     <div class="list-group">
