@@ -12,8 +12,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $categories = Category::withCount('products')->with('categories')->where('parent_id', null)->get();
-        dd($categories->toArray());
+        // $categories = Category::where('parent_id', null)->get();
+
+        $categories = Category::whereNULL('parent_id')->with(['categories' => function ($query) {
+            $query->withCount('products');
+        }])->get();
         return view('wayshop.index', compact('categories'));
     }
 }

@@ -81,7 +81,7 @@
                                         @foreach($category->categories as $sub_category)
                                         <a href="#"
                                             class="list-group-item list-group-item-action active">{{ $sub_category->name }}
-                                            <small class="text-muted">(50)</small></a>
+                                            <small class="text-muted">({{ $sub_category->products_count }})</small></a>
                                         @endforeach
                                     </div>
                                 </div>
