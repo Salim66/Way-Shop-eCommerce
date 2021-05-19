@@ -50,8 +50,8 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('user.profile.view') }}">View Categories</a></li>
-                    <li><a href="{{ route('user.change.password') }}">Add Category</a></li>
+                    <li><a href="{{ route('categories.view') }}">View Categories</a></li>
+                    <li><a href="{{ route('categories.add') }}">Add Category</a></li>
                 </ul>
             </li>
             <li>

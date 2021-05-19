@@ -48,3 +48,9 @@ Route::prefix('/user')->group(function () {
     Route::get('/change/password', 'App\Http\Controllers\UserController@userChangePassword')->name('user.change.password');
     Route::post('/change/password/update', 'App\Http\Controllers\UserController@userChangePasswordUpdate')->name('user.change.password.update');
 });
+
+Route::prefix('categories')->group(function () {
+    Route::get('/view', 'App\Http\Controllers\CategoryController@view')->name('categories.view');
+    Route::get('/add', 'App\Http\Controllers\CategoryController@add')->name('categories.add');
+    Route::post('/store', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
+});
