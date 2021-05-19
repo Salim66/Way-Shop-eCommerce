@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Categories Add')
+@section('title', 'Categories Edit')
 
 @section('main-content')
 <div class="content-wrapper">
@@ -10,7 +10,7 @@
             <i class="fa fa-users"></i>
         </div>
         <div class="header-title">
-            <h1>Add Category</h1>
+            <h1>Edit Category</h1>
             <small>Categories list</small>
         </div>
     </section>
@@ -27,27 +27,33 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('categories.store') }}" method="POST" class="col-sm-12"
+                        <form action="{{ route('categories.update', $data->id) }}" method="POST" class="col-sm-12"
                             id="categoryAddForm">
                             @csrf
+                            @method("PATCH")
                             <div class="form-group col-sm-6">
                                 <label>Category Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Category Name">
-                                <span
-                                    class="text-danger">{{ (@$errors->has('name'))? @$errors->first('name') : '' }}</span>
+                                <input type="text" name="name" class="form-control" placeholder="Category Name"
+                                    value="{{ $data->name }}">
+                                <span class="
+                                    text-danger">{{ (@$errors->has('name'))? @$errors->first('name') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Parent Category</label>
                                 <select name="parent_id" id="parent_id" class="form-control">
                                     <option value="" selected>Select Category</option>
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ (@$data->parent_id == $category->id)? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label>Description</label>
-                                <textarea name="description" id="description" rows="4" class="form-control"></textarea>
+                                <textarea name="description" id="description" rows="4"
+                                    class="form-control">{{ $data->description }}</textarea>
                                 <span
                                     class="text-danger">{{ (@$errors->has('description'))? @$errors->first('description') : '' }}</span>
                             </div>

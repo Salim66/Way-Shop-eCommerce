@@ -70,4 +70,38 @@ class CategoryController extends Controller
         }
         return redirect()->back()->with('success', 'Category deleted successfully ):');
     }
+
+    /**
+     * Categories edit
+     */
+    public function edit($id)
+    {
+        $data = Category::find($id);
+        $categories = Category::all();
+        return view('admin.category.edit_category', compact('data', 'categories'));
+    }
+
+    /**
+     * Categories update
+     */
+    public function update(Request $request, $id)
+    {
+        $data = Category::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'name'        => 'required | unique:categories,name,' . $data->id,
+                'description' => 'required'
+            ]);
+
+            $data->parent_id   = $request->parent_id;
+            $data->name        = $request->name;
+            $data->slug        = Str::slug($request->name);
+            $data->description = $request->description;
+            $data->update();
+
+            return redirect()->route('categories.view')->with('success', 'Category updated successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! do not found any data');
+        }
+    }
 }

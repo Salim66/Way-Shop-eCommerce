@@ -63,7 +63,7 @@
                                             checked @endif>
                                         </td>
                                         <td width="10%" class="text-center">
-                                            <a title="Edit" href="{{ route('admin.user.edit', $category->id) }}"
+                                            <a title="Edit" href="{{ route('categories.edit', $category->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
                                             <form style="display: inline"
                                                 action="{{ route('categories.delete', $category->id) }}" method="POST">

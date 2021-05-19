@@ -55,4 +55,6 @@ Route::prefix('categories')->group(function () {
     Route::post('/store', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
     Route::post('/status-update', 'App\Http\Controllers\CategoryController@statusUpdate');
     Route::delete('/delete/{id}', 'App\Http\Controllers\CategoryController@delete')->name('categories.delete');
+    Route::get('/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('categories.edit');
+    Route::patch('/update/{id}', 'App\Http\Controllers\CategoryController@update')->name('categories.update');
 });
