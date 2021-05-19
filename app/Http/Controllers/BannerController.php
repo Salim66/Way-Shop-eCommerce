@@ -93,4 +93,44 @@ class BannerController extends Controller
         $data = Banner::find($id);
         return view('admin.banner.edit_banner', compact('data'));
     }
+
+    /**
+     * Banner update
+     */
+    public function update(Request $request, $id)
+    {
+        $data = Banner::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'title'      => 'required',
+                'sub_title'  => 'required',
+                'text_style' => 'required',
+                'sort_order' => 'required',
+                'link'       => 'required',
+            ]);
+
+            // Upload banner image 
+            $image_unique_name = '';
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $image_unique_name = rand(0000, 9999) . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('uploads/banners/'), $image_unique_name);
+                if (file_exists('uploads/banners/' . $data->image) && !empty($data->image)) {
+                    unlink('uploads/banners/' . $data->image);
+                }
+            } else {
+                $image_unique_name = $data->image;
+            }
+
+            $data->title      = $request->title;
+            $data->sub_title  = $request->sub_title;
+            $data->text_style = $request->text_style;
+            $data->sort_order = $request->sort_order;
+            $data->link       = $request->link;
+            $data->image      = $image_unique_name;
+            $data->update();
+
+            return redirect()->route('banners.view')->with('success', 'Banner updated successfully ): ');
+        }
+    }
 }
