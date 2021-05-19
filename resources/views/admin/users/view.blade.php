@@ -50,8 +50,10 @@
                                 <tbody>
                                     @foreach($users as $user)
                                     <tr>
-                                        <td><img src="assets/dist/img/m1.png" class="img-circle" alt="User Image"
-                                                width="50" height="50"></td>
+                                        <td><img src="{{ URL::to('') }}/uploads/users/{{ $user->photo }}"
+                                                class="img-circle" alt="User Image"
+                                                onerror="this.src='/uploads/users/avatar3.png';" width="50" height="50">
+                                        </td>
                                         <td>{{ $user->name }}</td>
                                         <td><span class="label-custom label label-default">{{ $user->user_type }}</span>
                                         </td>
