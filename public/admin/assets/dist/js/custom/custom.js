@@ -189,6 +189,12 @@
              }
          });
 
+         // Banner image upload
+         $(document).on('change', '#banner_image', function(event){
+             let image_url = URL.createObjectURL(event.target.files[0]);
+             $('#banner_image_load').attr('src', image_url);
+         });
+
 
     });
 })(jQuery);
