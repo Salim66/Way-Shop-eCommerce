@@ -67,4 +67,21 @@ class BannerController extends Controller
         ]);
         return redirect()->back();
     }
+
+    /**
+     * Banner delete
+     */
+    public function delete($id)
+    {
+        $data = Banner::find($id);
+        if ($data != NULL) {
+            $data->delete();
+            if (file_exists('uploads/banners/' . $data->image) && !empty($data->image)) {
+                unlink('uploads/banners/' . $data->image);
+            }
+            return redirect()->back()->with('success', 'Banner deleted successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data');
+        }
+    }
 }

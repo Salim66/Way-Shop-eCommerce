@@ -72,7 +72,7 @@
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <form style="display: inline"
-                                                action="{{ route('products.delete', $data->id) }}" method="POST">
+                                                action="{{ route('banners.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete" type="submit" id="delete"
