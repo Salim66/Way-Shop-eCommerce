@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -17,6 +18,7 @@ class IndexController extends Controller
         $categories = Category::whereNULL('parent_id')->with(['categories' => function ($query) {
             $query->withCount('products');
         }])->get();
-        return view('wayshop.index', compact('categories'));
+        $products = Product::where('status', 1)->latest()->get();
+        return view('wayshop.index', compact('categories', 'products'));
     }
 }
