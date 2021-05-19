@@ -69,6 +69,44 @@
              $('#user_photo_load').attr('src', image_url);
          });
 
+         //category status update
+         $('.category_status_update').change(function(){
+             let id = $(this).attr('data-id');
+             
+             //input checkbox checked or unchecked under jQuery prop() function 
+             if($(this).prop("checked") == true){
+                 $.ajax({
+                     headers: {
+                         'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                     },
+                     type: "POST",
+                     url: "/categories/status-update",
+                     data: {id: id, status: 1},
+                     success: function(data){
+                         $.notify("Category Active", {globalPosition: 'top right', className: 'success'});
+                     },
+                     error: function() {
+                         $.notify("Something is wrong", {globalPosition: 'top right', className: 'info'});
+                     }
+                 });
+             }else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/categories/status-update",
+                    data: {id: id, status: 0},
+                    success: function(data){
+                        $.notify("Category Inactive", {globalPosition: 'top right', className: 'danger'});
+                    },
+                    error: function() {
+                        $.notify("Something is wrong", {globalPosition: 'top right', className: 'info'});
+                    }
+                });
+             }
+         });
+
 
     });
 })(jQuery);

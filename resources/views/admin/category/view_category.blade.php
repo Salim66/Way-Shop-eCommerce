@@ -56,7 +56,7 @@
                                         <td>{{ $category->parent_id }}</td>
                                         <td>{{ $category->slug }}</td>
                                         <td width="8%">
-                                            <input type="checkbox" class="user_status_update btn btn-success"
+                                            <input type="checkbox" class="category_status_update btn btn-success"
                                                 data-toggle="toggle" data-size="mini" data-on="Active"
                                                 data-off="Inactive" data-id="{{ $category->id }}" data-onstyle="success"
                                                 @if($category->status == 1)

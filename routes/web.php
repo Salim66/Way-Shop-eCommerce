@@ -53,4 +53,5 @@ Route::prefix('categories')->group(function () {
     Route::get('/view', 'App\Http\Controllers\CategoryController@view')->name('categories.view');
     Route::get('/add', 'App\Http\Controllers\CategoryController@add')->name('categories.add');
     Route::post('/store', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
+    Route::post('/status-update', 'App\Http\Controllers\CategoryController@statusUpdate');
 });

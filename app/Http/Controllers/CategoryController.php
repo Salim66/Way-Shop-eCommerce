@@ -45,4 +45,15 @@ class CategoryController extends Controller
 
         return redirect()->back()->with('success', 'Category added successfully ): ');
     }
+
+    /**
+     * Categories status update
+     */
+    public function statusUpdate(Request $request)
+    {
+        Category::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->back();
+    }
 }
