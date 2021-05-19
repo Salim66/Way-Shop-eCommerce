@@ -42,6 +42,18 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('user.change.password') }}">Change Password</a></li>
                 </ul>
             </li>
+            <li class="treeview {{(@$prefix == '/categories')? 'active' : ""}}">
+                <a href="#">
+                    <i class="glyphicon glyphicon-th-list"></i><span>Categories</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('user.profile.view') }}">View Categories</a></li>
+                    <li><a href="{{ route('user.change.password') }}">Add Category</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="company.html">
                     <i class="fa fa-home"></i> <span>Companies</span>
