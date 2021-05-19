@@ -87,4 +87,21 @@ class ProductController extends Controller
         ]);
         return redirect()->back();
     }
+
+    /**
+     * Porudct delete
+     */
+    public function delete($id)
+    {
+        $data = Product::find($id);
+        if ($data != NULL) {
+            $data->delete();
+            if (file_exists('uploads/products/' . $data->image) && !empty($data->image)) {
+                unlink('uploads/products/' . $data->image);
+            }
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data.');
+        }
+        return redirect()->back()->with('success', 'Product deleted successfully ): ');
+    }
 }

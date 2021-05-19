@@ -68,5 +68,6 @@ Route::prefix('products')->group(function () {
     Route::get('/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
     Route::post('/store', 'App\Http\Controllers\ProductController@store')->name('products.store');
     Route::post('/status-update', 'App\Http\Controllers\ProductController@statusUpdate');
-    Route::post('featured-product/status-update', 'App\Http\Controllers\ProductController@featuredProductStatusUpdate');
+    Route::post('/featured-product/status-update', 'App\Http\Controllers\ProductController@featuredProductStatusUpdate');
+    Route::delete('/delete/{id}', 'App\Http\Controllers\ProductController@delete')->name('products.delete');
 });
