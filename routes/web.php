@@ -73,3 +73,8 @@ Route::prefix('products')->group(function () {
     Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('products.edit');
     Route::put('/update/{id}', 'App\Http\Controllers\ProductController@update')->name('products.update');
 });
+
+// Route for banners
+Route::prefix('banners')->group(function () {
+    Route::get('/view', 'App\Http\Controllers\BannerController@view')->name('banners.view');
+});
