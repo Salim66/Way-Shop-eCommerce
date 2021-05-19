@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class IndexController extends Controller
             $query->withCount('products');
         }])->get();
         $products = Product::where('status', 1)->latest()->paginate(6);
-        return view('wayshop.index', compact('categories', 'products'));
+        $banners = Banner::all();
+        return view('wayshop.index', compact('categories', 'products', 'banners'));
     }
 }
