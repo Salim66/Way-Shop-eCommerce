@@ -65,4 +65,15 @@ class ProductController extends Controller
 
         return redirect()->route('products.view')->with('success', 'Product added successfully ): ');
     }
+
+    /**
+     * Product status update
+     */
+    public function statusUpdate(Request $request)
+    {
+        Product::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->back();
+    }
 }

@@ -113,6 +113,44 @@
              $('#product_image_load').attr('src', product_image);
          });
 
+         // product status update
+         $('.product_status_update').change(function(){
+             let id = $(this).attr('data-id');
+             
+             //input checkbox checked or unchecked under jquery prop() function
+             if($(this).prop('checked') == true){
+                 $.ajax({
+                     headers: {
+                         'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                     },
+                     type: "POST",
+                     url: '/products/status-update',
+                     data: {id: id, status: 1},
+                     success: function(data){
+                         $.notify("Product Active", {globalPosition: 'top right', className: 'success'});
+                     },
+                     error: function(data){
+                         $.notify("Sorry! something is wrong.", {globalPosition: 'top right', className: 'danger'});
+                     }
+                 });
+             }else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: '/products/status-update',
+                    data: {id: id, status: 0},
+                    success: function(data){
+                        $.notify("Product Inactive", {globalPosition: 'top right', className: 'warning'});
+                    },
+                    error: function(data){
+                        $.notify("Sorry! something is wrong.", {globalPosition: 'top right', className: 'danger'});
+                    }
+                });
+             }
+         });
+
 
     });
 })(jQuery);

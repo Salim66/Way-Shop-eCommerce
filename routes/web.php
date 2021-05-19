@@ -67,4 +67,5 @@ Route::prefix('products')->group(function () {
     Route::get('/view', 'App\Http\Controllers\ProductController@view')->name('products.view');
     Route::get('/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
     Route::post('/store', 'App\Http\Controllers\ProductController@store')->name('products.store');
+    Route::post('/status-update', 'App\Http\Controllers\ProductController@statusUpdate');
 });
