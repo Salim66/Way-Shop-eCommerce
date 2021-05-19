@@ -55,7 +55,7 @@
                                     @foreach($all_data as $data)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $data->category_id }}</td>
+                                        <td>{{ $data->category->name }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->code }}</td>
                                         <td>{{ $data->color }}</td>
@@ -70,7 +70,7 @@
                                                 @if($data->status == 1)
                                             checked @endif>
                                         </td>
-                                        <td class="text-center">
+                                        <td width="8%" class="text-center">
                                             <input type="checkbox" class="featured_product_update btn btn-success"
                                                 data-toggle="toggle" data-size="mini" data-on="Active"
                                                 data-off="Inactive" data-id="{{ $data->id }}"
