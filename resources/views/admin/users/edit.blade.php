@@ -11,7 +11,7 @@
         </div>
         <div class="header-title">
             <h1>Edit Users</h1>
-            <small>Customer list</small>
+            <small>Users list</small>
         </div>
     </section>
     <!-- Main content -->
@@ -23,7 +23,7 @@
                     <div class="panel-heading">
                         <div class="btn-group" id="buttonlist">
                             <a class="btn btn-add " href="{{ route('admin.users') }}">
-                                <i class="fa fa-list"></i> Customer List </a>
+                                <i class="fa fa-list"></i> Users List </a>
                         </div>
                     </div>
                     <div class="panel-body">
