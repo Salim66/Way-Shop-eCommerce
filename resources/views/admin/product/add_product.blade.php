@@ -27,12 +27,12 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('categories.store') }}" method="POST" class="col-sm-12"
-                            id="categoryAddForm">
+                        <form action="{{ route('products.store') }}" method="POST" class="col-sm-12" id="productAddForm"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-6">
                                 <label>Category Name</label>
-                                <select name="parent_id" id="parent_id" class="form-control">
+                                <select name="category_id" id="category_id" class="form-control">
                                     <option value="" disabled selected>Select Category</option>
                                     @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="product_image"><i class="fa fa-image fa-5x text-success"></i></label>
-                                <input type="file" name="photo" class="form-control" style="display: none;"
+                                <input type="file" name="image" class="form-control" style="display: none;"
                                     id="product_image">
                                 <img id="product_image_load" src="" alt="" style="width: 120px; margin-left: 60px;">
                             </div>
@@ -89,13 +89,21 @@
 </div>
 <script>
     $(function(){
-        $("#categoryAddForm").validate({
+        $("#productAddForm").validate({
             rules: {
+                category_id: "required",
                 name: "required",
+                code: "required",
+                color: "required",
                 description: "required",
+                price: "required",
             },
             messages: {
-                name: "Please enter category name",
+                category_d: "Please select category name",
+                name: "Please enter product name",
+                code: "Please enter product code",
+                color: "Please enter product color",
+                price: "Please enter product price",
                 description: "Please enter category description",
             },
             errorElement: "span",

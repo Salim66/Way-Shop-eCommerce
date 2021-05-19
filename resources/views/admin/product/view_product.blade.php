@@ -70,6 +70,13 @@
                                                 @if($data->status == 1)
                                             checked @endif>
                                         </td>
+                                        <td class="text-center">
+                                            <input type="checkbox" class="featured_product_update btn btn-success"
+                                                data-toggle="toggle" data-size="mini" data-on="Active"
+                                                data-off="Inactive" data-id="{{ $data->id }}"
+                                                @if($data->featured_product == 1) checked
+                                            @endif>
+                                        </td>
                                         <td width="10%" class="text-center">
                                             <a title="Edit" href="{{ route('categories.edit', $data->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
