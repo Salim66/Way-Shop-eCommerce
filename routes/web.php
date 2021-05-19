@@ -77,4 +77,5 @@ Route::prefix('products')->group(function () {
 // Route for banners
 Route::prefix('banners')->group(function () {
     Route::get('/view', 'App\Http\Controllers\BannerController@view')->name('banners.view');
+    Route::get('/add', 'App\Http\Controllers\BannerController@add')->name('banners.add');
 });
