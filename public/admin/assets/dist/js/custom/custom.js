@@ -1,6 +1,9 @@
 (function($){
     $(document).ready(function(){
 
+        //datatable
+        $('table#datatable').DataTable();
+
         //user status update
         $('.user_status_update').change(function (event) { 
             let id = $(this).attr('data-id');

@@ -41,6 +41,8 @@
 <!-- Sweetalert -->
 <link href="{{ asset('admin/assets/')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
 <!--=====================================================================-->
+<!-- Datatable CSS -->
+<link href="{{ asset('admin/assets/')}}/dist/css/datatables.min.css" rel="stylesheet" type="text/css" />
 <!-- Toastr CSS -->
 <link href="{{ asset('admin/assets/')}}/dist/css/toastr.min.css" rel="stylesheet" type="text/css" />
 <!-- jQuery -->

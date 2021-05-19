@@ -41,6 +41,8 @@
 <script src="{{ asset('admin/assets/')}}/dist/js/dashboard.js" type="text/javascript"></script>
 <!-- End Theme label Script
     =====================================================================-->
+<!-- Datatable Js-->
+<script src="{{ asset('admin/assets/')}}/dist/js/datatables.min.js" type="text/javascript"></script>
 <!-- Toaster Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/toastr.min.js" type="text/javascript"></script>
 <!-- Sweetalert js -->

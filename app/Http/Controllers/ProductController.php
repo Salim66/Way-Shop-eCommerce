@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function add()
     {
-        $categories = Category::where('status', 1)->latest()->get();
+        $categories = Category::where('status', 1)->where('parent_id', '!=', null)->latest()->get();
         return view('admin.product.add_product', compact('categories'));
     }
 
