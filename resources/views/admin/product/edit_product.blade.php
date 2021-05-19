@@ -27,9 +27,10 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('products.store') }}" method="POST" class="col-sm-12"
+                        <form action="{{ route('products.update', $data->id) }}" method="POST" class="col-sm-12"
                             id="productEditForm" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="form-group col-sm-6">
                                 <label>Category Name</label>
                                 <select name="category_id" id="category_id" class="form-control">

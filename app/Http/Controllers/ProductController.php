@@ -114,4 +114,48 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('admin.product.edit_product', compact('data', 'categories'));
     }
+
+    /**
+     * Product update
+     */
+    public function update(Request $request, $id)
+    {
+        $data = Product::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'category_id' => 'required',
+                'name'        => 'required | unique:users,name,' . $data->id,
+                'code'        => 'required',
+                'color'       => 'required',
+                'description' => 'required',
+                'price'       => 'required',
+            ]);
+
+            // Product upload directory and photo resize by imageintervention
+            $image_unique_name = '';
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $image_unique_name = md5(time() . rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(260, 420)->save('uploads/products/' . $image_unique_name);
+                $image->move(public_path('uploads/products/'), $image_unique_name);
+                if (file_exists('uploads/products/' . $data->image) && !empty($data->image)) {
+                    unlink('uploads/products/' . $data->image);
+                }
+            } else {
+                $image_unique_name = $data->image;
+            }
+
+            $data->category_id = $request->category_id;
+            $data->name = $request->name;
+            $data->slug = Str::slug($request->name);
+            $data->code = $request->code;
+            $data->color = $request->color;
+            $data->description = $request->description;
+            $data->price = $request->price;
+            $data->image = $image_unique_name;
+            $data->update();
+
+            return redirect()->route('products.view')->with('success', 'Product updated successfully ): ');
+        }
+    }
 }
