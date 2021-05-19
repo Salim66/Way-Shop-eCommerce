@@ -21,10 +21,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Dashboard route
+Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
+
 Route::prefix('admin')->group(function () {
+    //Admin login and register route
     Route::get('/register', 'App\Http\Controllers\AdminController@register')->name('admin.register');
     Route::get('/login', 'App\Http\Controllers\AdminController@login')->name('admin.login');
-    Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
+
 
     // Admin users routes
     Route::get('/users', 'App\Http\Controllers\UserController@view')->name('admin.users');

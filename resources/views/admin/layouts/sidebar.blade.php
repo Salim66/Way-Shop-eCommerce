@@ -16,9 +16,10 @@ $route = Route::current()->getName();
                     </span>
                 </a>
             </li>
+            @if(Auth::user()->user_type == 'Super Admin')
             <li class="treeview {{(@$prefix == '/admin')? 'active' : ""}}">
                 <a href="{{ route('admin.users') }}">
-                    <i class="fa fa-user-circle"></i><span>User</span>
+                    <i class="fa fa-user-circle"></i><span>Users</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -28,6 +29,7 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('admin.users') }}">User List</a></li>
                 </ul>
             </li>
+            @endif
             <li class="treeview {{(@$prefix == '/user')? 'active' : ""}}">
                 <a href="#">
                     <i class="fa fa-user-circle-o"></i><span>User Profile</span>
