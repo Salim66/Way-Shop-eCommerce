@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('products.store') }}" method="POST" class="col-sm-12" id="productAddForm"
+                        <form action="{{ route('banners.store') }}" method="POST" class="col-sm-12" id="bannerAddForm"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-6">
@@ -85,22 +85,20 @@
 </div>
 <script>
     $(function(){
-        $("#productAddForm").validate({
+        $("#bannerAddForm").validate({
             rules: {
-                category_id: "required",
-                name: "required",
-                code: "required",
-                color: "required",
-                description: "required",
-                price: "required",
+                title: "required",
+                text_style: "required",
+                sort_order: "required",
+                link: "required",
+                sub_title: "required",
             },
             messages: {
-                category_d: "Please select category name",
-                name: "Please enter product name",
-                code: "Please enter product code",
-                color: "Please enter product color",
-                price: "Please enter product price",
-                description: "Please enter category description",
+                title: "Please enter banner title",
+                text_style: "Please enter banner text style",
+                sort_order: "Please enter banner sort order",
+                link: "Please enter banner link",
+                sub_title: "Please enter banner sub title",
             },
             errorElement: "span",
             errorPlacement: function(error, element) {

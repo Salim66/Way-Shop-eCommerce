@@ -42,7 +42,6 @@
                                     <tr class="info">
                                         <th>Image</th>
                                         <th>Title</th>
-                                        <th>Sub Title</th>
                                         <th>Sort Order</th>
                                         <th>Text Style</th>
                                         <th>Link</th>
@@ -54,11 +53,10 @@
                                     @foreach($all_data as $data)
                                     <tr>
                                         <td>
-                                            <img src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt=""
-                                                width="50" height="50">
+                                            <img src="{{ URL::to('') }}/uploads/banners/{{ $data->image }}" alt=""
+                                                width="80" height="50">
                                         </td>
                                         <td>{{ $data->title }}</td>
-                                        <td>{{ $data->sub_title }}</td>
                                         <td>{{ $data->sort_order }}</td>
                                         <td>{{ $data->text_style }}</td>
                                         <td>{{ $data->link }}</td>
