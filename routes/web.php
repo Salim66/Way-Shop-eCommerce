@@ -70,4 +70,5 @@ Route::prefix('products')->group(function () {
     Route::post('/status-update', 'App\Http\Controllers\ProductController@statusUpdate');
     Route::post('/featured-product/status-update', 'App\Http\Controllers\ProductController@featuredProductStatusUpdate');
     Route::delete('/delete/{id}', 'App\Http\Controllers\ProductController@delete')->name('products.delete');
+    Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('products.edit');
 });

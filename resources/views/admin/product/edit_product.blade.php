@@ -1,17 +1,17 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Product Add')
+@section('title', 'Products Edit')
 
 @section('main-content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="header-icon">
-            <i class="fa fa-product-hunt"></i>
+            <i class="fa fa-pencil"></i>
         </div>
         <div class="header-title">
-            <h1>Add Product</h1>
-            <small>Products list</small>
+            <h1>Edit Product</h1>
+            <small>Proudcts list</small>
         </div>
     </section>
     <!-- Main content -->
@@ -27,39 +27,45 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('products.store') }}" method="POST" class="col-sm-12" id="productAddForm"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('products.store') }}" method="POST" class="col-sm-12"
+                            id="productEditForm" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-6">
                                 <label>Category Name</label>
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="" disabled selected>Select Category</option>
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ ($data->category_id == $category->id)? 'selected' : '' }}>
+                                        {{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Product Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Product Name">
+                                <input type="text" name="name" class="form-control" placeholder="Product Name"
+                                    value="{{ $data->name }}">
                                 <span
                                     class="text-danger">{{ (@$errors->has('name'))? @$errors->first('name') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Product Code</label>
-                                <input type="text" name="code" class="form-control" placeholder="Product Code">
+                                <input type="text" name="code" class="form-control" placeholder="Product Code"
+                                    value="{{ $data->code }}">
                                 <span
                                     class="text-danger">{{ (@$errors->has('code'))? @$errors->first('code') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Product Color</label>
-                                <input type="text" name="color" class="form-control" placeholder="Product Color">
+                                <input type="text" name="color" class="form-control" placeholder="Product Color"
+                                    value="{{ $data->color }}">
                                 <span
                                     class="text-danger">{{ (@$errors->has('color'))? @$errors->first('color') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label>Description</label>
-                                <textarea name="description" id="description" rows="4" class="form-control"></textarea>
+                                <textarea name="description" id="description" rows="4"
+                                    class="form-control">{{ $data->description }}</textarea>
                                 <span
                                     class="text-danger">{{ (@$errors->has('description'))? @$errors->first('description') : '' }}</span>
                             </div>
@@ -67,17 +73,19 @@
                                 <label for="product_image"><i class="fa fa-image fa-5x text-success"></i></label>
                                 <input type="file" name="image" class="form-control" style="display: none;"
                                     id="product_image">
-                                <img id="product_image_load" src="" alt="" style="width: 120px; margin-left: 60px;">
+                                <img id="product_image_load"
+                                    src="{{ URL::to('/') }}/uploads/products/{{ $data->image }}" alt=""
+                                    style="width: 120px; margin-left: 60px;">
                             </div>
                             <div class="form-group col-sm-3">
                                 <label>Product Price</label>
-                                <input type="text" name="price" class="form-control" placeholder="Product Price">
+                                <input type="text" name="price" class="form-control" placeholder="Product Price"
+                                    value="{{ $data->price }}">
                                 <span
                                     class="text-danger">{{ (@$errors->has('price'))? @$errors->first('price') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-3" style="margin-top: 25px;">
-                                <button type="reset" class="btn btn-warning">Reset</button>
-                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" class="btn btn-success">Update</button>
                             </div>
                         </form>
                     </div>
@@ -89,7 +97,7 @@
 </div>
 <script>
     $(function(){
-        $("#productAddForm").validate({
+        $("#productEditForm").validate({
             rules: {
                 category_id: "required",
                 name: "required",

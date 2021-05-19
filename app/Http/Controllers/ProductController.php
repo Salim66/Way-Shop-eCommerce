@@ -104,4 +104,14 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('success', 'Product deleted successfully ): ');
     }
+
+    /**
+     * Product edit
+     */
+    public function edit($id)
+    {
+        $data = Product::find($id);
+        $categories = Category::all();
+        return view('admin.product.edit_product', compact('data', 'categories'));
+    }
 }

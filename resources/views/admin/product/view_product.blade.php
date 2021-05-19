@@ -78,8 +78,9 @@
                                             @endif>
                                         </td>
                                         <td width="10%" class="text-center">
-                                            <a title="Edit" href="{{ route('categories.edit', $data->id) }}"
+                                            <a title="Edit" href="{{ route('products.edit', $data->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
+
                                             <form style="display: inline"
                                                 action="{{ route('products.delete', $data->id) }}" method="POST">
                                                 @csrf
