@@ -107,6 +107,12 @@
              }
          });
 
+         // product image load
+         $(document).on('change', '#product_image', function(event){
+             let product_image = URL.createObjectURL(event.target.files[0]);
+             $('#product_image_load').attr('src', product_image);
+         });
+
 
     });
 })(jQuery);
