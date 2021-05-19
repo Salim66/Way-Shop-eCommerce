@@ -76,4 +76,15 @@ class ProductController extends Controller
         ]);
         return redirect()->back();
     }
+
+    /**
+     * Featured product status update
+     */
+    public function featuredProductStatusUpdate(Request $request)
+    {
+        Product::where('id', $request->id)->update([
+            'featured_product' => $request->status
+        ]);
+        return redirect()->back();
+    }
 }
