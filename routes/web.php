@@ -11,6 +11,8 @@ Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singl
 Route::post('/cart/add', 'App\Http\Controllers\ProductController@addCartStore')->name('cart.add');
 //Routes for cart show page
 Route::get('/cart', 'App\Http\Controllers\ProductController@cart')->name('cart');
+//Routes for cart apply coupon code 
+Route::post('/cart/apply-coupon', 'App\Http\Controllers\ProductController@applyCoupon')->name('cart.apply_coupon');
 //Routes for cart product quantity update
 Route::get('/cart/product_quantity/update/{id}/{quantity}', 'App\Http\Controllers\ProductController@cartProductQuantityUpdate');
 

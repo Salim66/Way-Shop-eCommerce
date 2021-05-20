@@ -87,15 +87,18 @@
 
         <div class="row my-5">
             <div class="col-lg-6 col-sm-6">
-                <div class="coupon-box">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code"
-                            type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">Apply Coupon</button>
+                <form action="{{ route('cart.apply_coupon') }}" method="POST">
+                    @csrf
+                    <div class="coupon-box">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" name="coupon_code" placeholder="Enter your coupon code"
+                                aria-label="Coupon code" type="text">
+                            <div class="input-group-append">
+                                <button class="btn btn-theme" type="submit">Apply Coupon</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="update-box float-right">
@@ -109,20 +112,27 @@
             <div class="col-lg-4 col-sm-12">
                 <div class="order-box">
                     <h3>Order summary</h3>
+                    @if(!empty(Session::get('couponAmount')))
                     <div class="d-flex">
                         <h4>Sub Total</h4>
                         <div class="ml-auto font-weight-bold"> $ {{ $total_amount }} </div>
                     </div>
                     <hr class="my-1">
                     <div class="d-flex">
-                        <h4>Coupon Amount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 10 </div>
+                        <h4>Coupon Amount(-)</h4>
+                        <div class="ml-auto font-weight-bold"> $ {{ Session::get('couponAmount') }} </div>
                     </div>
                     <hr>
                     <div class="d-flex gr-total">
                         <h5>Grand Total</h5>
-                        <div class="ml-auto h5"> $ 388 </div>
+                        <div class="ml-auto h5"> $ {{ $total_amount - Session::get('couponAmount') }} </div>
                     </div>
+                    @else
+                    <div class="d-flex gr-total">
+                        <h5>Grand Total</h5>
+                        <div class="ml-auto h5"> $ {{ $total_amount }} </div>
+                    </div>
+                    @endif
                     <hr>
                 </div>
             </div>

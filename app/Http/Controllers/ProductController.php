@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Coupon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
@@ -392,5 +393,68 @@ class ProductController extends Controller
     {
         DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
         return redirect()->back()->with('success', 'Cart proudct quantity updated successfully ): ');
+    }
+
+    /**
+     * Cart apply coupon 
+     * ===mendatory check before coupon apply===
+     * 1. first coupon code valid or not
+     * 2. check coupon code status active or inactive
+     * 3.expiry date check has or not
+     * ==coupon is ready for discount==
+     * 4. check user auth has or not
+     * 5. count total amount
+     * 6. check amount type is fixed or percentage
+     * 7. add session couponAmount
+     * 8. add session coupon code
+     */
+    public function applyCoupon(Request $request)
+    {
+        // Check coupon check or not form input field / check valid coupon or not
+        $countCoupon = Coupon::where('coupon_code', $request->coupon_code)->count();
+        if ($countCoupon == 0) {
+            return redirect()->back()->with('error', 'Sorry! coupon code does not exists!');
+        } else {
+            $couponDetails = Coupon::where('coupon_code', $request->coupon_code)->first();
+            // Check coupon code statsu active or inactive
+            if ($couponDetails->status == 0) {
+                return redirect()->back()->with('error', 'Sorry! coupon  code status not active!');
+            } else {
+                // check expiry date has or not
+                $expiry_date = $couponDetails->expiry_date;
+                $current_date = date('Y-m-d');
+                if ($expiry_date < $current_date) {
+                    return redirect()->back()->with('error', 'Sorry! coupon code is expired!');
+                } else {
+                    // Coupon is ready for discount
+                    // check auth has or not
+                    if (Auth::check()) {
+                        $user_email = Auth::user()->email;
+                        $carts = DB::table('cart')->where('user_email', $user_email)->get();
+                    } else {
+                        $session_id = Session::get('session_id');
+                        $carts = DB::table('cart')->where('session_id', $session_id)->get();
+                    }
+
+                    // Count total amount
+                    $total_amount = 0;
+                    foreach ($carts as $cart) {
+                        $total_amount += ($cart->quantity * $cart->price);
+                    }
+
+                    // check , if amount type fixed or percentage
+                    if ($couponDetails->amount_type == 'Fixed') {
+                        $couponAmount = $total_amount;
+                    } elseif ($couponDetails->amount_type == "Percentange") {
+                        $totalA = ($total_amount * $couponDetails->amount) / 100;
+                        $couponAmount = round($totalA);
+                    }
+
+                    Session::put('couponAmount', $couponAmount);
+                    Session::put('coupon_code', $request->coupon_code);
+                    return redirect()->back()->with('success', 'Coupon code is successfully applied! you are now availing discount ): ');
+                }
+            }
+        }
     }
 }
