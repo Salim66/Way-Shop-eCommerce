@@ -68,7 +68,7 @@
                                             <a title="Edit" href="{{ route('categories.edit', $data->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
                                             <form style="display: inline"
-                                                action="{{ route('categories.delete', $data->id) }}" method="POST">
+                                                action="{{ route('coupons.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete" type="submit" id="delete"

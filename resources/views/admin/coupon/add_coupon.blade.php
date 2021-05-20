@@ -44,7 +44,7 @@
                             <div class="form-group col-sm-6">
                                 <label>Amount Type</label>
                                 <select name="amount_type" id="amount_type" class="form-control">
-                                    <option value="" selected>Select Type</option>
+                                    <option value="" disabled selected>Select Type</option>
                                     <option value="Percentange">Percentage</option>
                                     <option value="Fixed">Fixed</option>
                                 </select>

@@ -57,4 +57,16 @@ class CouponController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Coupon delete
+     */
+    public function delete($id)
+    {
+        $data = Coupon::find($id);
+        if ($data != NULL) {
+            $data->delete();
+            return redirect()->back()->with('success', 'Coupon deleted successfully ): ');
+        }
+    }
 }
