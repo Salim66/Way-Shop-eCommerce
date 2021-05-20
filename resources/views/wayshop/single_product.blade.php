@@ -24,12 +24,13 @@
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active"> <img class="d-block w-100"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="First slide"> </div>
-                        <div class="carousel-item"> <img class="d-block w-100"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="Second slide"> </div>
-                        <div class="carousel-item"> <img class="d-block w-100"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="Third slide"> </div>
+
+                        @foreach ($data->attributesImages as $key => $image)
+                        <div class="carousel-item {{ ($key == 0)? 'active' : '' }}"> <img class="d-block w-100"
+                                src="{{ URL::to('') }}/uploads/products/attributes/{{ $image->image }}"
+                                alt="First slide" style="height: 460px;"> </div>
+                        @endforeach
+
                     </div>
                     <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -40,18 +41,14 @@
                         <span class="sr-only">Next</span>
                     </a>
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-1" data-slide-to="0" class="active">
+                        @foreach ($data->attributesImages as $key => $image)
+                        <li data-target="#carousel-example-1" data-slide-to="{{ $key }}"
+                            class="{{ ($key == 0)? 'active' : '' }}">
                             <img class="d-block w-100 img-fluid"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="" />
+                                src="{{ URL::to('') }}/uploads/products/attributes/{{ $image->image }}"
+                                style="height: 88px;" alt="" />
                         </li>
-                        <li data-target="#carousel-example-1" data-slide-to="1">
-                            <img class="d-block w-100 img-fluid"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="" />
-                        </li>
-                        <li data-target="#carousel-example-1" data-slide-to="2">
-                            <img class="d-block w-100 img-fluid"
-                                src="{{ URL::to('') }}/uploads/products/{{ $data->image }}" alt="" />
-                        </li>
+                        @endforeach
                     </ol>
                 </div>
             </div>
