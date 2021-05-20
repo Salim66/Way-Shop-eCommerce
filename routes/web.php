@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Routes for frontend wayshop page
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singleProduct')->name('single.product');
 
 
 

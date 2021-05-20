@@ -23,4 +23,13 @@ class IndexController extends Controller
         $banners = Banner::all();
         return view('wayshop.index', compact('categories', 'products', 'banners'));
     }
+
+    /**
+     * Frontend single proudct
+     */
+    public function singleProduct($slug)
+    {
+        $data = Product::where('slug', $slug)->first();
+        return view('wayshop.single_product', compact('data'));
+    }
 }
