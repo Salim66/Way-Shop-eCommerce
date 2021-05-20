@@ -296,4 +296,15 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Delete proudct attribute image!');
         }
     }
+
+    /**
+     * Size select to price
+     */
+    public function sizeSelectToPrice(Request $request)
+    {
+        $pro_size = $request->size;
+        $data = explode('-', $pro_size);
+        $size = ProductAttribute::where('product_id', $data[0])->where('size', $data[1])->first();
+        return $size->price;
+    }
 }

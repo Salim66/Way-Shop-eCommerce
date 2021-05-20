@@ -55,7 +55,7 @@
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
                     <h2>{{ $data->name }}</h2>
-                    <h5> ${{ $data->price }}</h5>
+                    <h5 id="pro_price"> ${{ $data->price }}</h5>
                     <p>
                         <h4>Short Description:</h4>
                         <p>{{ $data->description }}</p>
@@ -63,15 +63,11 @@
                             <li>
                                 <div class="form-group size-st">
                                     <label class="size-label">Size</label>
-                                    <select id="basic" class="selectpicker show-tick form-control">
-                                        <option value="0">Size</option>
-                                        <option value="0">S</option>
-                                        <option value="1">M</option>
-                                        <option value="1">L</option>
-                                        <option value="1">XL</option>
-                                        <option value="1">XXL</option>
-                                        <option value="1">3XL</option>
-                                        <option value="1">4XL</option>
+                                    <select id="basic" class="selectpicker show-tick form-control isSize">
+                                        <option value="">Size</option>
+                                        @foreach ($data->attributes as $attr)
+                                        <option value="{{ $data->id }}-{{ $attr->size }}">{{ $attr->size }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </li>

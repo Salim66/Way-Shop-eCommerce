@@ -13,4 +13,5 @@
 <script src="{{ asset('wayshop/assets/js/')}}/baguetteBox.min.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/form-validator.min.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/contact-form-script.js"></script>
+<script src="{{ asset('wayshop/assets/js/')}}/custom/custom.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/custom.js"></script>
