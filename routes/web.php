@@ -103,4 +103,6 @@ Route::prefix('coupons')->group(function () {
     Route::post('/store', 'App\Http\Controllers\CouponController@store')->name('coupons.store');
     Route::post('/status-update', 'App\Http\Controllers\CouponController@statusUpdate');
     Route::delete('/delete/{id}', 'App\Http\Controllers\CouponController@delete')->name('coupons.delete');
+    Route::get('/edit/{id}', 'App\Http\Controllers\CouponController@edit')->name('coupons.edit');
+    Route::put('/update/{id}', 'App\Http\Controllers\CouponController@update')->name('coupons.update');
 });

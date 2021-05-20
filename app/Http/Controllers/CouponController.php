@@ -69,4 +69,21 @@ class CouponController extends Controller
             return redirect()->back()->with('success', 'Coupon deleted successfully ): ');
         }
     }
+
+    /**
+     * Coupon edit page
+     */
+    public function edit($id)
+    {
+        $data = Coupon::find($id);
+        return view('admin.coupon.edit_coupon', compact('data'));
+    }
+
+    /**
+     * Coupon update
+     */
+    public function update(Request $request, $id)
+    {
+        return $request->all();
+    }
 }
