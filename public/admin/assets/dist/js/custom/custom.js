@@ -247,5 +247,43 @@
              
          });
 
+         // Coupon status update
+         $('.coupon_status_update').change(function(){
+             let id = $(this).attr('data-id');
+             
+             // Input checkbox checked or unchecked under jQuery prop() function 
+             if($(this).prop("checked") == true){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/coupons/status-update",
+                    data: {id: id, status: 1},
+                    success: function(data){
+                        $.notify("Coupon Active", {globalPosition: 'top right', className: 'success'});
+                    },
+                    error: function(data){
+                        $.notify("Sorry! something is wrong.", {globalPosition: 'top right', className: 'error'});
+                    }
+                });
+             }else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/coupons/status-update",
+                    data: {id: id, status: 0},
+                    success: function(data){
+                        $.notify("Coupon Inactive", {globalPosition: 'top right', className: 'warnign'});
+                    },
+                    error: function(data){
+                        $.notify("Sorry! something is wrong.", {globalPosition: 'top right', className: 'error'});
+                    }
+                });
+             }
+         });
+
     });
 })(jQuery);

@@ -45,4 +45,16 @@ class CouponController extends Controller
 
         return redirect()->back()->with('success', 'Coupon added successfully ); ');
     }
+
+    /**
+     * Coupon status update
+     */
+    public function statusUpdate(Request $request)
+    {
+        Coupon::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->back();
+    }
 }

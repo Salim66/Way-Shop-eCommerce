@@ -101,4 +101,5 @@ Route::prefix('coupons')->group(function () {
     Route::get('/view', 'App\Http\Controllers\CouponController@view')->name('coupons.view');
     Route::get('/add', 'App\Http\Controllers\CouponController@add')->name('coupons.add');
     Route::post('/store', 'App\Http\Controllers\CouponController@store')->name('coupons.store');
+    Route::post('/status-update', 'App\Http\Controllers\CouponController@statusUpdate');
 });
