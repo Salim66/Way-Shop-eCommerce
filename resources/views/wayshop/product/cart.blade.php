@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             @php
-                            $total = 0;
+                            $total_amount = 0;
                             @endphp
                             @foreach($carts as $cart)
                             <tr>
@@ -67,7 +67,7 @@
                                     @endif
                                 </td>
                                 <td class="total-pr">
-                                    <p>$ {{ $total }}</p>
+                                    <p>$ {{ $cart->price * $cart->quantity }}</p>
                                 </td>
                                 <td class="remove-pr">
                                     <a href="#">
@@ -76,7 +76,7 @@
                                 </td>
                             </tr>
                             @php
-                            $total += ($cart->price * $cart->quantity);
+                            $total_amount += ($cart->price * $cart->quantity);
                             @endphp
                             @endforeach
                         </tbody>
