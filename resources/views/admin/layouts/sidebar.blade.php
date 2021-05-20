@@ -87,7 +87,7 @@ $route = Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('coupons.view') }}">View Coupon</a></li>
-                    <li><a href="{{ route('banners.add') }}">Add Coupon</a></li>
+                    <li><a href="{{ route('coupons.add') }}">Add Coupon</a></li>
                 </ul>
             </li>
         </ul>

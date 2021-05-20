@@ -31,25 +31,32 @@
                             id="categoryAddForm">
                             @csrf
                             <div class="form-group col-sm-6">
-                                <label>Category Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Category Name">
+                                <label>Coupon Code</label>
+                                <input type="text" name="coupon_code" class="form-control" placeholder="Coupon Code">
                                 <span
-                                    class="text-danger">{{ (@$errors->has('name'))? @$errors->first('name') : '' }}</span>
+                                    class="text-danger">{{ (@$errors->has('coupon_code'))? @$errors->first('coupon_code') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label>Parent Category</label>
-                                <select name="parent_id" id="parent_id" class="form-control">
-                                    <option value="" selected>Select Category</option>
-                                    @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-12">
-                                <label>Description</label>
-                                <textarea name="description" id="description" rows="4" class="form-control"></textarea>
+                                <label>Amount</label>
+                                <input type="text" name="amount" class="form-control" placeholder="Amount">
                                 <span
-                                    class="text-danger">{{ (@$errors->has('description'))? @$errors->first('description') : '' }}</span>
+                                    class="text-danger">{{ (@$errors->has('amount'))? @$errors->first('amount') : '' }}</span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Amount Type</label>
+                                <select name="amount_type" id="amount_type" class="form-control">
+                                    <option value="" selected>Select Type</option>
+                                    <option value="Percentange">Percentage</option>
+                                    <option value="Fixed">Fixed</option>
+                                </select>
+                                <span
+                                    class="text-danger">{{ (@$errors->has('amount_type'))? @$errors->first('amount_type') : '' }}</span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Expiry Date</label>
+                                <input type="date" name="expiry_date" class="form-control" id="datepicker">
+                                <span
+                                    class="text-danger">{{ (@$errors->has('expiry_date'))? @$errors->first('expiry_date') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-6" style="margin-top: 25px;">
                                 <button type="reset" class="btn btn-warning">Reset</button>
