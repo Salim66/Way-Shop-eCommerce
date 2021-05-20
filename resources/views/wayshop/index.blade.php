@@ -173,7 +173,9 @@
                                                 <h4>{{ $product->name }}</h4>
                                                 <h5> ${{ $product->price }}</h5>
                                                 <p>{{ $product->description }}</p>
-                                                <a class="btn hvr-hover" href="#">Product Details</a>
+                                                <a class="btn hvr-hover"
+                                                    href="{{ route('single.product', $product->slug) }}">Product
+                                                    Details</a>
                                             </div>
                                         </div>
                                     </div>
