@@ -99,7 +99,7 @@
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="update-box float-right">
-                    <a href="" class="btn hvr-hover text-white btn-lg">Update Cart</a>
+                    <a href="{{ route('index') }}" class="btn hvr-hover text-white btn-lg">Update Cart</a>
                 </div>
             </div>
         </div>

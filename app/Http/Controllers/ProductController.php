@@ -391,6 +391,6 @@ class ProductController extends Controller
     public function cartProductQuantityUpdate($id, $quantity)
     {
         DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
-        return redirect()->back()->with('Success', 'Cart proudct quantity updated successfully ): ');
+        return redirect()->back()->with('success', 'Cart proudct quantity updated successfully ): ');
     }
 }
