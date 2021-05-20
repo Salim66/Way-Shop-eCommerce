@@ -9,8 +9,10 @@ Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singl
 
 // Routes for add to cart session and store cart
 Route::post('/cart/add', 'App\Http\Controllers\ProductController@addCartStore')->name('cart.add');
-//Rotues for cart show page
+//Routes for cart show page
 Route::get('/cart', 'App\Http\Controllers\ProductController@cart')->name('cart');
+//Routes for cart product quantity update
+Route::get('/cart/product_quantity/update/{id}/{quantity}', 'App\Http\Controllers\ProductController@cartProductQuantityUpdate');
 
 
 Auth::routes();

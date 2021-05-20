@@ -384,4 +384,13 @@ class ProductController extends Controller
 
         return view('wayshop.product.cart', compact('carts'));
     }
+
+    /**
+     * Cart product quantity update
+     */
+    public function cartProductQuantityUpdate($id, $quantity)
+    {
+        DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
+        return redirect()->back()->with('Success', 'Cart proudct quantity updated successfully ): ');
+    }
 }

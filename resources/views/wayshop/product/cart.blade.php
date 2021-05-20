@@ -55,10 +55,16 @@
                                     <p>$ {{ $cart->price }}</p>
                                 </td>
                                 <td class="quantity-box">
-                                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-plus"></i></a>
-                                    <input type="number" size="4" value="{{ $cart->quantity }}" min="0" step="1"
+                                    <a class="btn btn-sm btn-success"
+                                        href="{{ url('/cart/product_quantity/update/'.$cart->id.'/1') }}"><i
+                                            class="fa fa-plus"></i></a>
+                                    <input type="text" size="4" value="{{ $cart->quantity }}" min="0" step="1"
                                         class="c-input-text qty text" style="width: 100px;">
-                                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-minus"></i></a>
+                                    @if($cart->quantity > 1)
+                                    <a class="btn btn-sm btn-danger"
+                                        href="{{ url('/cart/product_quantity/update/'.$cart->id.'/-1') }}"><i
+                                            class="fa fa-minus"></i></a>
+                                    @endif
                                 </td>
                                 <td class="total-pr">
                                     <p>$ {{ $total }}</p>
