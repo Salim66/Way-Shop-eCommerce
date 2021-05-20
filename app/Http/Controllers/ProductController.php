@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductAttribute;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
@@ -165,6 +166,48 @@ class ProductController extends Controller
     public function productAttributs($id)
     {
         $product = Product::find($id);
-        return view('admin.product.product_attribute', compact('product'));
+        $pro_attr = ProductAttribute::where('product_id', $product->id)->get();
+        return view('admin.product.product_attribute', compact('product', 'pro_attr'));
+    }
+
+    /**
+     * Product attributes store
+     */
+    public function productAttributsStore(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'required',
+            'sku'        => 'required',
+            'size'       => 'required',
+            'price'      => 'required',
+            'stock'      => 'required',
+        ]);
+
+        $size_count = count($request->size);
+
+        for ($i = 0; $i < $size_count; $i++) {
+            if ($request->sku != NULL) {
+                //check sku already exists or not
+                $attrProSku = ProductAttribute::where('product_id', $request->product_id)->where('sku', $request->sku[$i])->count();
+                if ($attrProSku > 0) {
+                    return redirect()->back()->with('error', 'Sorry! ' . $request->sku[$i] . ' This product sku already has been taken, please insert another sku.');
+                }
+
+                //check size already exists or not
+                $attrProSize = ProductAttribute::where('product_id', $request->product_id)->where('size', $request->size[$i])->count();
+                if ($attrProSize > 0) {
+                    return redirect()->back()->with('error', 'Sorry! ' . $request->size[$i] . ' This product size already has been taken, please insert another size.');
+                }
+
+                ProductAttribute::create([
+                    'product_id' => $request->product_id,
+                    'sku'        => $request->sku[$i],
+                    'size'       => $request->size[$i],
+                    'price'      => $request->price[$i],
+                    'stock'      => $request->stock[$i],
+                ]);
+            }
+        }
+        return redirect()->back()->with('success', 'Product attributes added successfully ): ');
     }
 }

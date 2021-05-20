@@ -27,7 +27,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="">
+                        <form action="{{ route('products.attributs.store') }}" method="POST">
+                            @csrf
 
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="form-group">
@@ -47,6 +48,7 @@
                                     <div style="display: flex">
                                         <input type="text" name="sku[]" id="sku" class="form-control" placeholder="SKU"
                                             style="width: 120px; margin-right: 5px">
+                                        <span>{{ ($errors->has('sku'))? $errors->first('sku') : "" }}</span>
                                         <input type="text" name="size[]" id="size" class="form-control"
                                             placeholder="SIZE" style="width: 120px; margin-right: 5px">
                                         <input type="text" name="price[]" id="price" class="form-control"
@@ -90,20 +92,21 @@
                                             <th>#</th>
                                             <th>Product ID</th>
                                             <th>SKU</th>
-                                            <th>PRICE</th>
                                             <th>SIZE</th>
+                                            <th>PRICE</th>
                                             <th>STOCK</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($pro_attr as $attribute)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>KTM</td>
-                                            <td>1024</td>
-                                            <td>Medium</td>
-                                            <td>10</td>
+                                            <td>{{ $attribute->id }}</td>
+                                            <td>{{ $attribute->product_id }}</td>
+                                            <td>{{ $attribute->sku }}</td>
+                                            <td>{{ $attribute->size }}</td>
+                                            <td>{{ $attribute->price }}</td>
+                                            <td>{{ $attribute->stock }}</td>
                                             <td width="17%" class="text-center">
 
                                                 <a title="Edit Product" href="#" class="btn btn-add btn-sm"><i
@@ -118,6 +121,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

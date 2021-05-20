@@ -66,6 +66,7 @@ Route::prefix('products')->group(function () {
     Route::put('/update/{id}', 'App\Http\Controllers\ProductController@update')->name('products.update');
     //Attributs
     Route::get('/attributes/{id}', 'App\Http\Controllers\ProductController@productAttributs')->name('products.attributes');
+    Route::post('/attributes/store', 'App\Http\Controllers\ProductController@productAttributsStore')->name('products.attributs.store');
 });
 
 // Route for banners
