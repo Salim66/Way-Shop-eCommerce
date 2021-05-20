@@ -23,4 +23,26 @@ class CouponController extends Controller
     {
         return view('admin.coupon.add_coupon');
     }
+
+    /**
+     * Store coupon 
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'coupon_code' => 'required | unique:coupons,coupon_code',
+            'amount'      => 'required',
+            'amount_type' => 'required',
+            'expiry_date' => 'required',
+        ]);
+
+        Coupon::create([
+            'coupon_code' => $request->coupon_code,
+            'amount' => $request->amount,
+            'amount_type' => $request->amount_type,
+            'expiry_date' => $request->expiry_date,
+        ]);
+
+        return redirect()->back()->with('success', 'Coupon added successfully ); ');
+    }
 }

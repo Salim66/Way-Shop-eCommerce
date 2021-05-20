@@ -27,8 +27,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('categories.store') }}" method="POST" class="col-sm-12"
-                            id="categoryAddForm">
+                        <form action="{{ route('coupons.store') }}" method="POST" class="col-sm-12" id="couponAddForm">
                             @csrf
                             <div class="form-group col-sm-6">
                                 <label>Coupon Code</label>
@@ -73,14 +72,18 @@
 </div>
 <script>
     $(function(){
-        $("#categoryAddForm").validate({
+        $("#couponAddForm").validate({
             rules: {
-                name: "required",
-                description: "required",
+                coupon_code: "required",
+                amount: "required",
+                amount_type: "required",
+                expiry_date: "required",
             },
             messages: {
-                name: "Please enter category name",
-                description: "Please enter category description",
+                coupon_code: "Please enter coupon code",
+                amount: "Please enter amount",
+                amount_type: "Please enter amount type",
+                expiry_date: "Please enter expiry date",
             },
             errorElement: "span",
             errorPlacement: function(error, element) {
