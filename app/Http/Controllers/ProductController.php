@@ -245,4 +245,13 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Sorry! does not found any data');
         }
     }
+
+    /**
+     * Product attributes images
+     */
+    public function productAttributsImages($id)
+    {
+        $product = Product::find($id);
+        return view('admin.product.product_attribute_images', compact('product'));
+    }
 }

@@ -78,6 +78,10 @@
                                             @endif>
                                         </td>
                                         <td width="17%" class="text-center">
+                                            <a title="Add Attributes Images"
+                                                href="{{ route('products.attributes.images', $data->id) }}"
+                                                class="btn btn-black btn-sm"><i class="fa fa-image"></i></a>
+
                                             <a title="Add Attributes"
                                                 href="{{ route('products.attributes', $data->id) }}"
                                                 class="btn btn-info btn-sm"><i class="fa fa-list"></i></a>

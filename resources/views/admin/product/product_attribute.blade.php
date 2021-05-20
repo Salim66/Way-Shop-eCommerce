@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Products Attributs')
+@section('title', 'Add Products Attributes')
 
 @section('main-content')
 <div class="content-wrapper">

@@ -236,6 +236,16 @@
              }
          });
 
+         // Product attribute images upload
+         $(document).on('change', '#product_attr_image', function(event){
+
+            for(let i=0; i<event.target.files.length; i++){
+                let images_url = URL.createObjectURL(event.target.files[i]);
+                $('#attr_image').append('<img id="product_attr_image_load" src="'+images_url+'" alt=""'+
+                'style="width: 60px; height: 60px; margin-top: 5px; margin-left: 20px;">');
+            }
+             
+         });
 
     });
 })(jQuery);
