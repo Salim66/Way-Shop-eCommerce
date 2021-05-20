@@ -13,6 +13,7 @@
                 data: {size: value},
                 success: function(data){
                     $('#pro_price').html('$'+data);
+                    $('#cart_price').val(data);
                 },
                 error: function(data){
                     // $.notify("Something is wrong", {globalPosition: 'top right', className: 'error'});

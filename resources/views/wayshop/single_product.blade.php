@@ -53,55 +53,67 @@
                 </div>
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
-                <div class="single-product-details">
-                    <h2>{{ $data->name }}</h2>
-                    <h5 id="pro_price"> ${{ $data->price }}</h5>
-                    <p>
-                        <h4>Short Description:</h4>
-                        <p>{{ $data->description }}</p>
-                        <ul>
-                            <li>
-                                <div class="form-group size-st">
-                                    <label class="size-label">Size</label>
-                                    <select id="basic" class="selectpicker show-tick form-control isSize">
-                                        <option value="">Size</option>
-                                        @foreach ($data->attributes as $attr)
-                                        <option value="{{ $data->id }}-{{ $attr->size }}">{{ $attr->size }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-group quantity-box">
-                                    <label class="control-label">Quantity</label>
-                                    <input class="form-control" value="0" min="0" max="20" type="number">
-                                </div>
-                            </li>
-                        </ul>
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
+                    <div class="single-product-details">
+                        <input type="hidden" name="product_id" value="{{ $data->id }}">
+                        <input type="hidden" name="product_name" value="{{ $data->name }}">
+                        <input type="hidden" name="product_code" value="{{ $data->code }}">
+                        <input type="hidden" name="product_color" value="{{ $data->color }}">
+                        <input type="hidden" name="price" id="cart_price" value="">
+                        <h2>{{ $data->name }}</h2>
+                        <h5 id="pro_price"> ${{ $data->price }}</h5>
+                        <p>
+                            <h4>Short Description:</h4>
+                            <p>{{ $data->description }}</p>
+                            <ul>
+                                <li>
+                                    <div class="form-group size-st">
+                                        <label class="size-label">Size</label>
+                                        <select name="size" id="basic"
+                                            class="selectpicker show-tick form-control isSize">
+                                            <option value="">Size</option>
+                                            @foreach ($data->attributes as $attr)
+                                            <option value="{{ $data->id }}-{{ $attr->size }}">{{ $attr->size }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group quantity-box">
+                                        <label class="control-label">Quantity</label>
+                                        <input class="form-control" name="quantity" value="0" min="0" max="20"
+                                            type="number">
+                                    </div>
+                                </li>
+                            </ul>
 
-                        <div class="price-box-bar">
-                            <div class="cart-and-bay-btn">
-                                <a class="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>
-                                <a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                            <div class="price-box-bar">
+                                <div class="cart-and-bay-btn">
+                                    <button type="submit" class="btn hvr-hover text-white">Add to cart</button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="add-to-btn">
-                            <div class="add-comp">
-                                <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
-                                <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+                            <div class="add-to-btn">
+                                <div class="add-comp">
+                                    <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
+                                    <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+                                </div>
+                                <div class="share-bar">
+                                    <a class="btn hvr-hover" href="#"><i class="fab fa-facebook"
+                                            aria-hidden="true"></i></a>
+                                    <a class="btn hvr-hover" href="#"><i class="fab fa-google-plus"
+                                            aria-hidden="true"></i></a>
+                                    <a class="btn hvr-hover" href="#"><i class="fab fa-twitter"
+                                            aria-hidden="true"></i></a>
+                                    <a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p"
+                                            aria-hidden="true"></i></a>
+                                    <a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp"
+                                            aria-hidden="true"></i></a>
+                                </div>
                             </div>
-                            <div class="share-bar">
-                                <a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                                <a class="btn hvr-hover" href="#"><i class="fab fa-google-plus"
-                                        aria-hidden="true"></i></a>
-                                <a class="btn hvr-hover" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                                <a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p"
-                                        aria-hidden="true"></i></a>
-                                <a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
 

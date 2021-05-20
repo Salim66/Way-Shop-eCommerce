@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\ProductAttribute;
-use App\Models\ProductAttributeImage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ProductAttributeImage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -306,5 +309,64 @@ class ProductController extends Controller
         $data = explode('-', $pro_size);
         $size = ProductAttribute::where('product_id', $data[0])->where('size', $data[1])->first();
         return $size->price;
+    }
+
+    /**
+     * Product add cart store
+     */
+    public function addCartStore(Request $request)
+    {
+        //check user email id has or not
+        $user_email = '';
+        if (empty(Auth::user()->email)) {
+            $user_email = '';
+        } else {
+            $user_email = Auth::user()->email;
+        }
+
+        //check user session id has or not
+        $session_id = Session::get('session_id');
+        if (empty($session_id)) {
+            $session_id = Str::random(40);
+            Session::put('session_id', $session_id);
+        }
+
+        // product size get
+        $size_get = explode('-', $request->size);
+
+        //check duplicate product size has or not // we do not permit same size allowed in the cart same email or session id
+        $productCount = DB::table('cart')->where([
+            'product_id' => $request->product_id,
+            'product_color' => $request->product_color,
+            'size' => $size_get[1],
+            'session_id' => $session_id
+        ])->count();
+
+
+        if ($productCount > 0) {
+            return redirect()->back()->with('error', 'Product size has been already taken! plese another size select');
+        } else {
+            DB::table('cart')->insert([
+                'product_id' => $request->product_id,
+                'product_name' => $request->product_name,
+                'product_code' => $request->product_code,
+                'product_color' => $request->product_color,
+                'size' => $request->size,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'user_email' => $user_email,
+                'session_id' => $session_id,
+            ]);
+
+            return redirect()->route('cart')->with('success', 'Product added to cart');
+        }
+    }
+
+    /**
+     * Cart page 
+     */
+    public function cart()
+    {
+        return view('wayshop.product.cart');
     }
 }

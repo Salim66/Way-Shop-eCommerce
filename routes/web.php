@@ -7,11 +7,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singleProduct')->name('single.product');
 
+// Routes for add to cart session and store cart
+Route::post('/cart/add', 'App\Http\Controllers\ProductController@addCartStore')->name('cart.add');
+//Rotues for cart show page
+Route::get('/cart', 'App\Http\Controllers\ProductController@cart')->name('cart');
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
 
 // Dashboard route
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard');
