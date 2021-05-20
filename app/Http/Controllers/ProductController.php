@@ -158,4 +158,13 @@ class ProductController extends Controller
             return redirect()->route('products.view')->with('success', 'Product updated successfully ): ');
         }
     }
+
+    /**
+     * Product attributes page
+     */
+    public function productAttributs($id)
+    {
+        $product = Product::find($id);
+        return view('admin.product.product_attribute', compact('product'));
+    }
 }

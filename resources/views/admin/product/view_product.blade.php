@@ -77,15 +77,19 @@
                                                 @if($data->featured_product == 1) checked
                                             @endif>
                                         </td>
-                                        <td width="10%" class="text-center">
-                                            <a title="Edit" href="{{ route('products.edit', $data->id) }}"
+                                        <td width="17%" class="text-center">
+                                            <a title="Add Attributes"
+                                                href="{{ route('products.attributes', $data->id) }}"
+                                                class="btn btn-info btn-sm"><i class="fa fa-list"></i></a>
+
+                                            <a title="Edit Product" href="{{ route('products.edit', $data->id) }}"
                                                 class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <form style="display: inline"
                                                 action="{{ route('products.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button title="Delete" type="submit" id="delete"
+                                                <button title="Delete Product" type="submit" id="delete"
                                                     class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
                                                 </button>
                                             </form>

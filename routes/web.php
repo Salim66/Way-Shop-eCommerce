@@ -64,6 +64,8 @@ Route::prefix('products')->group(function () {
     Route::delete('/delete/{id}', 'App\Http\Controllers\ProductController@delete')->name('products.delete');
     Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('products.edit');
     Route::put('/update/{id}', 'App\Http\Controllers\ProductController@update')->name('products.update');
+    //Attributs
+    Route::get('/attributes/{id}', 'App\Http\Controllers\ProductController@productAttributs')->name('products.attributes');
 });
 
 // Route for banners
