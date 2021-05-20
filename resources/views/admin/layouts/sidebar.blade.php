@@ -78,12 +78,17 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('banners.add') }}">Add Banners</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="company.html">
-                    <i class="fa fa-home"></i> <span>Companies</span>
+            <li class="treeview {{(@$prefix == '/coupons')? 'active' : ""}}">
+                <a href="#">
+                    <i class="fa fa-gift"></i><span>Coupons</span>
                     <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('coupons.view') }}">View Coupon</a></li>
+                    <li><a href="{{ route('banners.add') }}">Add Coupon</a></li>
+                </ul>
             </li>
         </ul>
     </div>

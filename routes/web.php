@@ -95,3 +95,9 @@ Route::prefix('banners')->group(function () {
     Route::get('/edit/{id}', 'App\Http\Controllers\BannerController@edit')->name('banners.edit');
     Route::patch('/update/{id}', 'App\Http\Controllers\BannerController@update')->name('banners.update');
 });
+
+//Routes for coupon
+Route::prefix('coupons')->group(function () {
+    Route::get('/view', 'App\Http\Controllers\CouponController@view')->name('coupons.view');
+    Route::get('/add', 'App\Http\Controllers\CouponController@add')->name('coupons.add');
+});
