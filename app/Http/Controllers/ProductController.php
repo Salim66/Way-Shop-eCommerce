@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductAttribute;
+use App\Models\ProductAttributeImage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
@@ -247,11 +248,37 @@ class ProductController extends Controller
     }
 
     /**
-     * Product attributes images
+     * Product attributes images page
      */
     public function productAttributsImages($id)
     {
         $product = Product::find($id);
-        return view('admin.product.product_attribute_images', compact('product'));
+        $pro_attr_img = ProductAttributeImage::where('product_id', $product->id)->get();
+        return view('admin.product.product_attribute_images', compact('product', 'pro_attr_img'));
+    }
+
+    /**
+     * Product attributes images store
+     */
+    public function productAttributsImagesStore(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'required'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $key => $image) {
+                $image_unique_name = md5(time() . rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(260, 420)->save('uploads/products/attributes/' . $image_unique_name);
+                $image->move(public_path('uploads/products/attributes/'), $image_unique_name);
+
+                ProductAttributeImage::create([
+                    'product_id' => $request->product_id,
+                    'image' => $image_unique_name,
+                ]);
+            }
+        }
+        return redirect()->back()->with('success', 'Product attribute images added successfully ): ');
     }
 }

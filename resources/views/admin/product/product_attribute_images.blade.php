@@ -27,7 +27,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('products.attributs.store') }}" method="POST">
+                        <form action="{{ route('products.attributs.image.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -47,7 +48,7 @@
                                 <div class="form-group col-sm-6">
                                     <label title="Upload Image" for="product_attr_image"><i
                                             class="fa fa-image fa-5x text-success"></i></label>
-                                    <input type="file" name="attr_image[]" class="form-control" multiple
+                                    <input type="file" name="image[]" class="form-control" multiple
                                         style="display: none;" id="product_attr_image">
                                     <div id="attr_image">
                                         <img id="product_attr_image_load" src="" alt=""
@@ -66,76 +67,54 @@
     </section>
     <!-- /.content -->
 
-    {{-- <section class="content">
+    <section class="content">
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="btn-group" id="buttonexport">
                             <a href="#">
-                                <h4>View Product Attributes</h4>
+                                <h4>View Product Attributes Images</h4>
                             </a>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('products.attributes.update', $product->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div class="table-responsive">
-        <table id="datatable" class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr class="info">
-                    <th>#</th>
-                    <th>Product ID</th>
-                    <th>SKU</th>
-                    <th>SIZE</th>
-                    <th>PRICE</th>
-                    <th>STOCK</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($pro_attr as $attribute)
-                <tr>
-                    <td>{{ $attribute->id }}</td>
-                    <td>{{ $attribute->product_id }}</td>
-                    <td style="display: none;">
-                        <input type="hidden" name="product_id" class="form-control"
-                            value="{{ $attribute->product_id }}">
-                    </td>
-                    <td>
-                        <input type="text" name="sku[]" class="form-control" value="{{ $attribute->sku }}">
-                    </td>
-                    <td>
-                        <input type="text" name="size[]" class="form-control" value="{{ $attribute->size }}">
-                    </td>
-                    <td>
-                        <input type="text" name="price[]" class="form-control" value="{{ $attribute->price }}">
-                    </td>
-                    <td>
-                        <input type="text" name="stock[]" class="form-control" value="{{ $attribute->stock }}">
-                    </td>
-                    <td width="17%" class="text-center">
 
-                        <button title="Product Attribute Update" type="submit" class="btn btn-sm btn-success"><i
-                                class="fa fa-pencil"></i></button>
-
-                        <a title="Product Attribute Delete" class="btn btn-danger btn-sm"
-                            href="{{ route('products.attributs.delete', $attribute->id) }}"><i
-                                class="fa fa-trash-o"></i></a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    </form>
-</div>
-</div>
-</div>
-</div>
-</section> --}}
-<!-- /.content -->
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>#</th>
+                                        <th>Product ID</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($pro_attr_img as $attribute)
+                                    <tr>
+                                        <td>{{ $attribute->id }}</td>
+                                        <td>{{ $attribute->product_id }}</td>
+                                        <td>
+                                            <img src="{{ URL::to('/') }}/uploads/products/attributes/{{ $attribute->image }}"
+                                                alt="" style="width: 120px; height: 100px;">
+                                        </td>
+                                        <td width="17%" class="text-center">
+                                            <a title="Product Attribute Delete" class="btn btn-danger btn-sm"
+                                                href="{{ route('products.attributs.delete', $attribute->id) }}"><i
+                                                    class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
 
 </div>
 @endsection
