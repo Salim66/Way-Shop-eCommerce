@@ -84,6 +84,24 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        $data = Coupon::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'coupon_code' => 'required | unique:coupons,coupon_code,' . $data->id,
+                'amount'      => 'required',
+                'amount_type' => 'required',
+                'expiry_date' => 'required',
+            ]);
+
+            $data->coupon_code = $request->coupon_code;
+            $data->amount = $request->amount;
+            $data->amount_type = $request->amount_type;
+            $data->expiry_date = $request->expiry_date;
+            $data->update();
+
+            return redirect()->route('coupons.view')->with('success', 'Coupon updated successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data.');
+        }
     }
 }
