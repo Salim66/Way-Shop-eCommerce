@@ -100,8 +100,8 @@
                                                 alt="" style="width: 120px; height: 100px;">
                                         </td>
                                         <td width="17%" class="text-center">
-                                            <a title="Product Attribute Delete" class="btn btn-danger btn-sm"
-                                                href="{{ route('products.attributs.delete', $attribute->id) }}"><i
+                                            <a title="Product Attribute Image Delete" class="btn btn-danger btn-sm"
+                                                href="{{ route('products.attributs.image.delete', $attribute->id) }}"><i
                                                     class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>

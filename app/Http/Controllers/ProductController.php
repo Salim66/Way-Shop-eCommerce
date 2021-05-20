@@ -281,4 +281,19 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('success', 'Product attribute images added successfully ): ');
     }
+
+    /**
+     * Product attributes image delete
+     */
+    public function productAttributsImageDelete($id)
+    {
+        $data = ProductAttributeImage::find($id);
+        if ($data != NULL) {
+            $data->delete();
+            if (file_exists('uploads/products/attributes/' . $data->image) && !empty($data->image)) {
+                unlink('uploads/products/attributes/' . $data->image);
+            }
+            return redirect()->back()->with('success', 'Delete proudct attribute image!');
+        }
+    }
 }

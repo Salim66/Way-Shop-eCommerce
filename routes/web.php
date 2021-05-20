@@ -71,6 +71,7 @@ Route::prefix('products')->group(function () {
     Route::put('/attributes/update/{id}', 'App\Http\Controllers\ProductController@productAttributsUpdate')->name('products.attributes.update');
     Route::get('/attributes/images/{id}', 'App\Http\Controllers\ProductController@productAttributsImages')->name('products.attributes.images');
     Route::post('/attributes/images/store', 'App\Http\Controllers\ProductController@productAttributsImagesStore')->name('products.attributs.image.store');
+    Route::get('/attributes/images/delete/{id}', 'App\Http\Controllers\ProductController@productAttributsImageDelete')->name('products.attributs.image.delete');
 });
 
 // Route for banners
