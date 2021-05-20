@@ -35,24 +35,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $total = 0;
+                            @endphp
+                            @foreach($carts as $cart)
                             <tr>
                                 <td class="thumbnail-img">
                                     <a href="#">
-                                        <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        <img class="img-fluid"
+                                            src="{{ URL::to('/') }}/uploads/products/{{ $cart->image }}" alt="" />
                                     </a>
                                 </td>
                                 <td class="name-pr">
                                     <a href="#">
-                                        Lorem ipsum dolor sit amet
+                                        {{ $cart->product_name }}
                                     </a>
                                 </td>
                                 <td class="price-pr">
-                                    <p>$ 80.0</p>
+                                    <p>$ {{ $cart->price }}</p>
                                 </td>
-                                <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1"
-                                        class="c-input-text qty text"></td>
+                                <td class="quantity-box">
+                                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-plus"></i></a>
+                                    <input type="number" size="4" value="{{ $cart->quantity }}" min="0" step="1"
+                                        class="c-input-text qty text" style="width: 100px;">
+                                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-minus"></i></a>
+                                </td>
                                 <td class="total-pr">
-                                    <p>$ 80.0</p>
+                                    <p>$ {{ $total }}</p>
                                 </td>
                                 <td class="remove-pr">
                                     <a href="#">
@@ -60,7 +69,10 @@
                                     </a>
                                 </td>
                             </tr>
-
+                            @php
+                            $total += ($cart->price * $cart->quantity);
+                            @endphp
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -367,6 +367,21 @@ class ProductController extends Controller
      */
     public function cart()
     {
-        return view('wayshop.product.cart');
+        // get cart all dta fetch
+        if (Auth::check()) {
+            $user_email = Auth::user()->email;
+            $carts = DB::table('cart')->where('user_email', $user_email)->get();
+        } else {
+            $session_id = Session::get('session_id');
+            $carts = DB::table('cart')->where('session_id', $session_id)->get();
+        }
+
+        //image added into cart
+        foreach ($carts as $key => $cart) {
+            $product = Product::where('id', $cart->product_id)->first();
+            $carts[$key]->image = $product->image;
+        }
+
+        return view('wayshop.product.cart', compact('carts'));
     }
 }
