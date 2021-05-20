@@ -67,6 +67,8 @@ Route::prefix('products')->group(function () {
     //Attributs
     Route::get('/attributes/{id}', 'App\Http\Controllers\ProductController@productAttributs')->name('products.attributes');
     Route::post('/attributes/store', 'App\Http\Controllers\ProductController@productAttributsStore')->name('products.attributs.store');
+    Route::delete('/attributes/delete/{id}', 'App\Http\Controllers\ProductController@productAttributsDelete')->name('products.attributs.delete');
+    Route::put('/attributes/update/{id}', 'App\Http\Controllers\ProductController@productAttributsUpdate')->name('products.attributes.update');
 });
 
 // Route for banners
@@ -75,7 +77,7 @@ Route::prefix('banners')->group(function () {
     Route::get('/add', 'App\Http\Controllers\BannerController@add')->name('banners.add');
     Route::post('/store', 'App\Http\Controllers\BannerController@store')->name('banners.store');
     Route::post('/status-update', 'App\Http\Controllers\BannerController@statusUpdate');
-    Route::delete('/delete/{id}', 'App\Http\Controllers\BannerController@delete')->name('banners.delete');
+    Route::get('/delete/{id}', 'App\Http\Controllers\BannerController@delete')->name('banners.delete');
     Route::get('/edit/{id}', 'App\Http\Controllers\BannerController@edit')->name('banners.edit');
     Route::patch('/update/{id}', 'App\Http\Controllers\BannerController@update')->name('banners.update');
 });

@@ -210,4 +210,39 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('success', 'Product attributes added successfully ): ');
     }
+
+    /**
+     * Product attributes delete
+     */
+    public function productAttributsDelete($id)
+    {
+        $data = ProductAttribute::find($id);
+        if ($data != NULL) {
+            $data->delete();
+            return redirect()->back()->with('success', 'Product attributes deleted successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data');
+        }
+    }
+
+    /**
+     * Product attributes update
+     */
+    public function productAttributsUpdate(Request $request, $id)
+    {
+        $productAttr = ProductAttribute::where('product_id', $request->product_id)->get();
+        if ($productAttr != NULL) {
+            $count = count($request->sku);
+            foreach ($productAttr as $key => $attr) {
+                $attr->sku = $request->sku[$key];
+                $attr->size = $request->size[$key];
+                $attr->price = $request->price[$key];
+                $attr->stock = $request->stock[$key];
+                $attr->update();
+            }
+            return redirect()->back()->with('success', 'Product attributes updated successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data');
+        }
+    }
 }

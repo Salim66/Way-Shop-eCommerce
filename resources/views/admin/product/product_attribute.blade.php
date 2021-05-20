@@ -84,7 +84,9 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="">
+                        <form action="{{ route('products.attributes.update', $product->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-bordered table-striped table-hover">
                                     <thead>
@@ -103,22 +105,34 @@
                                         <tr>
                                             <td>{{ $attribute->id }}</td>
                                             <td>{{ $attribute->product_id }}</td>
-                                            <td>{{ $attribute->sku }}</td>
-                                            <td>{{ $attribute->size }}</td>
-                                            <td>{{ $attribute->price }}</td>
-                                            <td>{{ $attribute->stock }}</td>
+                                            <td style="display: none;">
+                                                <input type="hidden" name="product_id" class="form-control"
+                                                    value="{{ $attribute->product_id }}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="sku[]" class="form-control"
+                                                    value="{{ $attribute->sku }}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="size[]" class="form-control"
+                                                    value="{{ $attribute->size }}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="price[]" class="form-control"
+                                                    value="{{ $attribute->price }}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="stock[]" class="form-control"
+                                                    value="{{ $attribute->stock }}">
+                                            </td>
                                             <td width="17%" class="text-center">
 
-                                                <a title="Edit Product" href="#" class="btn btn-add btn-sm"><i
-                                                        class="fa fa-pencil"></i></a>
+                                                <button title="Product Attribute Update" type="submit"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></button>
 
-                                                <form style="display: inline" action="" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button title="Delete Product" type="submit" id="delete"
-                                                        class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
-                                                    </button>
-                                                </form>
+                                                <a title="Product Attribute Delete" class="btn btn-danger btn-sm"
+                                                    href="{{ route('products.attributs.delete', $attribute->id) }}"><i
+                                                        class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
