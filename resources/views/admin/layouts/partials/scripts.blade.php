@@ -53,7 +53,14 @@
 <!-- Custom Js-->
 <script src="{{ asset('admin/assets/')}}/dist/js/custom/custom.js" type="text/javascript"></script>
 
-
+<script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+          minDate: 0,
+          dateFormat: 'yy-mm-dd'
+      });
+    } );
+</script>
 
 @if(session()->has('success'))
 <script type="text/javascript">

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="header-icon">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-gift"></i>
         </div>
         <div class="header-title">
             <h1>Add Coupons</h1>
@@ -54,7 +54,8 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Expiry Date</label>
-                                <input type="date" name="expiry_date" class="form-control" id="datepicker">
+                                <input type="text" name="expiry_date" class="form-control" id="datepicker"
+                                    autocomplete="off">
                                 <span
                                     class="text-danger">{{ (@$errors->has('expiry_date'))? @$errors->first('expiry_date') : '' }}</span>
                             </div>
