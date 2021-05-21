@@ -20,6 +20,7 @@ Route::get('/cart/product_quantity/update/{id}/{quantity}', 'App\Http\Controller
 Route::get('/login-registation', 'App\Http\Controllers\CustomerController@loginRegistationPage')->name('login.registation.page');
 Route::post('/registation', 'App\Http\Controllers\CustomerController@customerRegisterStore')->name('customers.register');
 Route::get('/customer/confirm/account/{code}', 'App\Http\Controllers\CustomerController@customerRegistationEmailConfirm')->name('customer.email.confirm');
+Route::post('/customer/login', 'App\Http\Controllers\CustomerController@customerLogin')->name('customer.login');
 
 
 Auth::routes();

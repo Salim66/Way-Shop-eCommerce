@@ -53,7 +53,7 @@
             <div class="col-lg-6 col-sm-12">
                 <div class="contact-form-right">
                     <h2>Already a Member? Please SignIn !</h2>
-                    <form action="" method="POST" id="loginForm">
+                    <form action="{{ route('customer.login') }}" method="POST" id="loginForm">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -109,6 +109,41 @@
                password: {
                    required: "Please enter your password",
                    minlength: "Password minimum length is 6"
+               }
+            },
+            errorElement: "span",
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $("#loginForm").validate({
+            rules: {
+                email:{
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                },
+            },
+            messages: {
+               email: {
+                   required: "Please enter your email",
+                   email: "Please enter your valid email"
+               },
+               password: {
+                   required: "Please enter your password",
                }
             },
             errorElement: "span",

@@ -53,7 +53,8 @@ class CustomerController extends Controller
 
         //if email is varified then login and redirect to cart
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 'Customer'])) {
-            Session::put('front_session', $request->email);
+            //when customer is successfully login email put session
+            Session::put('front_login_session', $request->email);
             return redirect()->route('cart')->with('success', 'Your are successfully login ): ');
         } else {
 
@@ -86,6 +87,31 @@ class CustomerController extends Controller
             }
         } else {
             return redirect()->route('login.registation.page')->with('error', 'Sorry! does not found any data!');
+        }
+    }
+
+    /**
+     * Customer login 
+     */
+    public function customerLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'    => 'required',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 'Customer'])) {
+            $data = User::where('email', $request->email)->first();
+            //check status active or not
+            if ($data->status == 0) {
+                return redirect()->back()->with('error', 'Your account is not activated! Please confirm your email to active your account.');
+            } else {
+                //when customer is successfully login email put session
+                Session::put('front_login_session', $request->email);
+                return redirect()->route('cart')->with('success', 'You are successfully login ): ');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Your email and password does not match!');
         }
     }
 }
