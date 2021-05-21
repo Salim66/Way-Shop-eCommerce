@@ -48,7 +48,13 @@
                         @if(Auth::check() && Auth::user()->user_type == 'Customer')
                         <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
                         <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                        <li><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
+                        <li><a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout_form').submit()"><i
+                                    class="fa fa-lock"></i>
+                                Logout</a></li>
+                        <form id="logout_form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
                         @else
                         <li><a href="{{ route('login.registation.page') }}"><i class="fa fa-key"></i> Login</a></li>
                         @endif

@@ -12,6 +12,7 @@ Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singl
 //Customer login registation page
 Route::get('/login-registation', 'App\Http\Controllers\CustomerController@loginRegistationPage')->name('login.registation.page');
 Route::post('/registation', 'App\Http\Controllers\CustomerController@customerRegisterStore')->name('customers.register');
+Route::post('/customer/login', 'App\Http\Controllers\CustomerController@customerLogin')->name('customer.login');
 
 //Authenticate front end customer and importend link
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -29,7 +30,6 @@ Route::middleware(['auth', 'customer'])->group(function () {
 
 
     Route::get('/customer/confirm/account/{code}', 'App\Http\Controllers\CustomerController@customerRegistationEmailConfirm')->name('customer.email.confirm');
-    Route::post('/customer/login', 'App\Http\Controllers\CustomerController@customerLogin')->name('customer.login');
 });
 
 
