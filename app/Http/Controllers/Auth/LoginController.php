@@ -106,18 +106,36 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
 
-        $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        if (Auth::user()->user_type != 'Customer') {
+            $this->guard()->logout();
 
-        if ($response = $this->loggedOut($request)) {
-            return $response;
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            if ($response = $this->loggedOut($request)) {
+                return $response;
+            }
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/admin/login');
+        } elseif (Auth::user()->user_type == 'Customer') {
+            $this->guard()->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            if ($response = $this->loggedOut($request)) {
+                return $response;
+            }
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/');
         }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/admin/login');
     }
 }
