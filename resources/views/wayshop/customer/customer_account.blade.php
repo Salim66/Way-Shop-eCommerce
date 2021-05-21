@@ -52,7 +52,8 @@
                     <div class="account-box">
                         <div class="service-box">
                             <div class="service-icon">
-                                <a href=""> <i class="fa fa-location-arrow"></i> </a>
+                                <a href="{{ route('customer.address.edit') }}"> <i class="fa fa-location-arrow"></i>
+                                </a>
                             </div>
                             <div class="service-desc">
                                 <h4>Change Address</h4>

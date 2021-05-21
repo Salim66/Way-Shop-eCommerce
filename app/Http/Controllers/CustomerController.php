@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Mail\CustomerRegistationConfirmationMail;
 use App\Mail\SuccessAccountActivatedMail;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -121,5 +122,16 @@ class CustomerController extends Controller
     public function customerAccount()
     {
         return view('wayshop.customer.customer_account');
+    }
+
+    /**
+     * Customer account edit page
+     */
+    public function customerAddressEdit()
+    {
+        $customer_email = Auth::user()->email;
+        $data = User::where('email', $customer_email)->first();
+        $countries = DB::table('countries')->get();
+        return view('wayshop.customer.customer_address_edit', compact('data', 'countries'));
     }
 }
