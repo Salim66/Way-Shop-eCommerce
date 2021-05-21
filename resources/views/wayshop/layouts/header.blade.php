@@ -45,10 +45,13 @@
                 </div>
                 <div class="our-link">
                     <ul>
+                        @if(Auth::check() && Auth::user()->user_type == 'Customer')
                         <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
                         <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                         <li><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
+                        @else
                         <li><a href="{{ route('login.registation.page') }}"><i class="fa fa-key"></i> Login</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

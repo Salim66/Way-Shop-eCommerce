@@ -23,7 +23,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::ADMIN_DASH);
+                if (Auth::user()->user_type != 'Customer') {
+                    return redirect(RouteServiceProvider::ADMIN_DASH);
+                } elseif (Auth::user()->user_type == 'Customer') {
+                    return redirect()->route('cart');
+                }
             }
         }
 
