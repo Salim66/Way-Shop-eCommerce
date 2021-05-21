@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Mail\CustomerRegistationConfirmationMail;
+use App\Mail\SuccessAccountActivatedMail;
 
 class CustomerController extends Controller
 {
@@ -12,5 +18,74 @@ class CustomerController extends Controller
     public function loginRegistationPage()
     {
         return view('wayshop.customer.login_registation_page');
+    }
+
+    /**
+     * Customer register store
+     */
+    public function customerRegisterStore(Request $request)
+    {
+        $this->validate($request, [
+            'name'     => 'required',
+            'email'    => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => password_hash($request->password, PASSWORD_DEFAULT),
+            'user_type' => 'Customer',
+        ]);
+
+        //data send by email
+        $email_data = [
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => $request->password,
+            'code'      => base64_encode($request->email)
+        ];
+
+        Mail::to($request->email)->send(new CustomerRegistationConfirmationMail($email_data));
+
+        //if email confirmation is not activated then redirect back
+        return redirect()->back()->with('error', 'Please confirm your email to activate your account!');
+
+        //if email is varified then login and redirect to cart
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 'Customer'])) {
+            Session::put('front_session', $request->email);
+            return redirect()->route('cart')->with('success', 'Your are successfully login ): ');
+        } else {
+
+            return redirect()->back()->with('error', 'Credintial do not match!');
+        }
+    }
+
+    /**
+     * Customer registation email confirm account
+     */
+    public function customerRegistationEmailConfirm($code)
+    {
+        $user_email = base64_decode($code);
+        $data = User::where('email', $user_email)->first();
+        if ($data != NULL) {
+            if ($data->status == 1) {
+                return redirect()->back()->with('error', 'Your are account already activated! Please you simply login.');
+            } else {
+                //status update
+                User::where('email', $user_email)->update(['status' => 1]);
+                //congratulation message send by custome when account is successfully activated
+                $email_data = [
+                    'name' => $data->name,
+                    'email' => $data->email,
+                    'password' => $data->password,
+                ];
+                Mail::to($data->email)->send(new SuccessAccountActivatedMail($email_data));
+
+                return redirect()->route('login.registation.page')->with('success', 'Congrats! your account is activated): ');
+            }
+        } else {
+            return redirect()->route('login.registation.page')->with('error', 'Sorry! does not found any data!');
+        }
     }
 }

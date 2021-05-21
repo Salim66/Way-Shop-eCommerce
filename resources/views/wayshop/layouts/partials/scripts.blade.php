@@ -13,6 +13,10 @@
 <script src="{{ asset('wayshop/assets/js/')}}/baguetteBox.min.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/form-validator.min.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/contact-form-script.js"></script>
+<!-- JQuery validation -->
+<script src="{{ asset('admin/assets/')}}/dist/js/jquery.validate.js" type="text/javascript"></script>
+<script src="{{ asset('admin/assets/')}}/dist/js/additional-methods.js" type="text/javascript"></script>
+<!-- Custom js -->
 <script src="{{ asset('wayshop/assets/js/')}}/custom/custom.js"></script>
 <script src="{{ asset('wayshop/assets/js/')}}/custom.js"></script>
 
