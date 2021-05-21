@@ -5,8 +5,8 @@
     @endif
     //Warnning Message
     @if(Session::has('error'))
-        // toastr.warning("{{ Session::get('warning') }}");
-        Lobibox.alert('error', {msg: "{{ Session::get('error') }}" });
+        toastr.error("{{ Session::get('error') }}");
+        // Lobibox.alert('error', {msg: "{{ Session::get('error') }}" });
     @endif
     //Error Message
     @if($errors->any())

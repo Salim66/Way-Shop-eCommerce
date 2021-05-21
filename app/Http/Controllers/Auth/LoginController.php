@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,47 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email'     => 'required',
+            'password'  => 'required',
+        ]);
+
+        $email    = $request->email;
+        $password = $request->password;
+
+        $verify_email = User::where('email', $email)->first();
+        $check_password = password_verify($password, $verify_email->password);
+        //check email and password is not match
+        if ($check_password == false) {
+            return redirect()->back()->with('error', 'Email and password does not match!');
+        }
+
+        // if status is not active
+        if ($verify_email->status == 0) {
+            return redirect()->back()->with('error', 'Sorry! you do not verified yet.');
+        }
+
+        // if admin panel access unauthorised person 
+        if ($verify_email->user_type == 'Customer') {
+            return redirect()->back()->with('error', 'Sorry! you do not permission this panel! and do not try to be oversmart.');
+        }
+
+        // if email and password is match
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect()->route('login')->with('success', 'Your are successfully login ): ');
+        }
+    }
 
     use AuthenticatesUsers;
 
