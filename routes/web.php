@@ -33,6 +33,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/customer/account', 'App\Http\Controllers\CustomerController@customerAccount')->name('customer.account');
     Route::get('/customer/address/edit', 'App\Http\Controllers\CustomerController@customerAddressEdit')->name('customer.address.edit');
     Route::post('/customer/address/update/{id}', 'App\Http\Controllers\CustomerController@customerAddressUpdate')->name('customer.address.update');
+    Route::get('/customer/change/password', 'App\Http\Controllers\CustomerController@customerChangePassword')->name('customer.change.password');
 });
 
 

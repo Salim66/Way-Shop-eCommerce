@@ -164,4 +164,12 @@ class CustomerController extends Controller
             return redirect()->route('customer.account')->with('success', 'Customer account updated successfully ): ');
         }
     }
+
+    /**
+     * Customer change password
+     */
+    public function customerChangePassword()
+    {
+        return view('wayshop.customer.customer_change_password');
+    }
 }
