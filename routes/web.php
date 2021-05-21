@@ -16,6 +16,9 @@ Route::post('/cart/apply-coupon', 'App\Http\Controllers\ProductController@applyC
 //Routes for cart product quantity update
 Route::get('/cart/product_quantity/update/{id}/{quantity}', 'App\Http\Controllers\ProductController@cartProductQuantityUpdate');
 
+//Customer login registation page
+Route::get('/login-registation', 'App\Http\Controllers\CustomerController@loginRegistationPage')->name('login.registation.page');
+
 
 Auth::routes();
 

@@ -37,9 +37,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="custom-select-box">
                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
                         <option>$ USD</option>
-                        <option>€ EUR</option>
                     </select>
                 </div>
                 <div class="right-phone-box">
@@ -47,9 +45,10 @@
                 </div>
                 <div class="our-link">
                     <ul>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Our location</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                        <li><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
+                        <li><a href="{{ route('login.registation.page') }}"><i class="fa fa-key"></i> Login</a></li>
                     </ul>
                 </div>
             </div>
