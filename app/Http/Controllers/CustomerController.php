@@ -114,4 +114,12 @@ class CustomerController extends Controller
             return redirect()->back()->with('error', 'Your email and password does not match!');
         }
     }
+
+    /**
+     * Customer account
+     */
+    public function customerAccount()
+    {
+        return view('wayshop.customer.customer_account');
+    }
 }

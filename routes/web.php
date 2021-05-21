@@ -30,6 +30,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
 
 
     Route::get('/customer/confirm/account/{code}', 'App\Http\Controllers\CustomerController@customerRegistationEmailConfirm')->name('customer.email.confirm');
+    Route::get('/customer/account', 'App\Http\Controllers\CustomerController@customerAccount')->name('customer.account');
 });
 
 
