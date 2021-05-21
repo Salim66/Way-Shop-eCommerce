@@ -444,7 +444,7 @@ class ProductController extends Controller
 
                     // check , if amount type fixed or percentage
                     if ($couponDetails->amount_type == 'Fixed') {
-                        $couponAmount = $total_amount;
+                        $couponAmount = $couponDetails->amount;
                     } elseif ($couponDetails->amount_type == "Percentange") {
                         $totalA = ($total_amount * $couponDetails->amount) / 100;
                         $couponAmount = round($totalA);
