@@ -172,4 +172,19 @@ class CustomerController extends Controller
     {
         return view('wayshop.customer.customer_change_password');
     }
+
+    /**
+     * Customer password update
+     */
+    public function customerPasswordUpdate(Request $request)
+    {
+        $data = User::find(Auth::id());
+        if (Auth::attempt(['email' => $data->email, 'password' => $request->old_password])) {
+            $data->password = password_hash($request->new_password, PASSWORD_DEFAULT);
+            $data->update();
+            return redirect()->route('customer.account')->with('success', 'Customer password successfully updated ): ');
+        } else {
+            return redirect()->back()->with('error', 'Email and password does not match!');
+        }
+    }
 }

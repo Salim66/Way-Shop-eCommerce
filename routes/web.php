@@ -34,6 +34,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/customer/address/edit', 'App\Http\Controllers\CustomerController@customerAddressEdit')->name('customer.address.edit');
     Route::post('/customer/address/update/{id}', 'App\Http\Controllers\CustomerController@customerAddressUpdate')->name('customer.address.update');
     Route::get('/customer/change/password', 'App\Http\Controllers\CustomerController@customerChangePassword')->name('customer.change.password');
+    Route::post('/customer/password/update', 'App\Http\Controllers\CustomerController@customerPasswordUpdate')->name('customer.password.update');
 });
 
 
