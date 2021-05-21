@@ -32,6 +32,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/customer/confirm/account/{code}', 'App\Http\Controllers\CustomerController@customerRegistationEmailConfirm')->name('customer.email.confirm');
     Route::get('/customer/account', 'App\Http\Controllers\CustomerController@customerAccount')->name('customer.account');
     Route::get('/customer/address/edit', 'App\Http\Controllers\CustomerController@customerAddressEdit')->name('customer.address.edit');
+    Route::post('/customer/address/update/{id}', 'App\Http\Controllers\CustomerController@customerAddressUpdate')->name('customer.address.update');
 });
 
 

@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="contact-form-right">
                     <h2>Edit Address !</h2>
-                    <form action="" method="POST" id="registationForm">
+                    <form action="{{ route('customer.address.update', $data->id) }}" method="POST" id="registationForm">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">

@@ -125,7 +125,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Customer account edit page
+     * Customer address edit page
      */
     public function customerAddressEdit()
     {
@@ -133,5 +133,35 @@ class CustomerController extends Controller
         $data = User::where('email', $customer_email)->first();
         $countries = DB::table('countries')->get();
         return view('wayshop.customer.customer_address_edit', compact('data', 'countries'));
+    }
+
+    /**
+     * Customer address update 
+     */
+    public function customerAddressUpdate(Request $request, $id)
+    {
+        $data = User::find($id);
+        if ($data != NULL) {
+            $this->validate($request, [
+                'name'    => 'required',
+                'address' => 'required',
+                'city'    => 'required',
+                'state'   => 'required',
+                'country' => 'required',
+                'pincode' => 'required',
+                'mobile'  => 'required',
+            ]);
+
+            $data->name = $request->name;
+            $data->address = $request->address;
+            $data->city = $request->city;
+            $data->state = $request->state;
+            $data->country = $request->country;
+            $data->pincode = $request->pincode;
+            $data->mobile = $request->mobile;
+            $data->update();
+
+            return redirect()->route('customer.account')->with('success', 'Customer account updated successfully ): ');
+        }
     }
 }

@@ -1,5 +1,7 @@
 @extends('wayshop.layouts.master')
 
+@section('title', 'Customer Account')
+
 @section('main-content')
 <!-- Start All Title Box -->
 <div class="all-title-box">
