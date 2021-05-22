@@ -5,7 +5,7 @@
         // Select size find the this size price real time using ajax
         $('.isSize').change(function(event){
             let value = $(this).val();
-            
+        
             //send route this value by ajax
             $.ajax({
                 url: '/products/size_attribute_to_price_search',
@@ -16,8 +16,7 @@
                     $('#cart_price').val(data);
                 },
                 error: function(data){
-                    // $.notify("Something is wrong", {globalPosition: 'top right', className: 'error'});
-                    alert('Error');
+                    $.notify("Something is wrong", {globalPosition: 'top right', className: 'error'});
                 }
             });
         });

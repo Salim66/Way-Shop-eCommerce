@@ -2,6 +2,8 @@
 <link rel="shortcut icon" href="{{ asset('wayshop/assets/images/')}}/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="{{ asset('wayshop/assets/images/')}}/apple-touch-icon.png">
 
+
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ asset('wayshop/assets/css/')}}/bootstrap.min.css">
 <!-- Site CSS -->
