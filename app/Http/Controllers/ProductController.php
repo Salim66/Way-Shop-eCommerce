@@ -317,6 +317,10 @@ class ProductController extends Controller
      */
     public function addCartStore(Request $request)
     {
+        // session forget when customer again added to cart another product or same product diffrent size
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
         //check user email id has or not
         $user_email = '';
         if (empty(Auth::user()->email)) {
@@ -391,6 +395,10 @@ class ProductController extends Controller
      */
     public function cartProductQuantityUpdate($id, $quantity)
     {
+        // session forget when customer again added to cart another product or same product diffrent size
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
         DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
         return redirect()->back()->with('success', 'Cart proudct quantity updated successfully ): ');
     }
@@ -410,6 +418,10 @@ class ProductController extends Controller
      */
     public function applyCoupon(Request $request)
     {
+        // session forget when customer again added to cart another product or same product diffrent size
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
         // Check coupon check or not form input field / check valid coupon or not
         $countCoupon = Coupon::where('coupon_code', $request->coupon_code)->count();
         if ($countCoupon == 0) {
