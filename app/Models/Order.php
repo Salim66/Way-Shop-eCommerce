@@ -10,4 +10,9 @@ class Order extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\OrderProduct', 'order_id');
+    }
 }

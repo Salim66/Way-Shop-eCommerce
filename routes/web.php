@@ -38,6 +38,8 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/order/review', 'App\Http\Controllers\ProductController@cutomerOrderReviewPage')->name('order.review.page');
     // Routes for customer order place
     Route::post('/order/place', 'App\Http\Controllers\ProductController@orderPlace')->name('place.order');
+    // Routes for customer payment by cash on delivary 
+    Route::get('/thanks', 'App\Http\Controllers\ProductController@thanks')->name('thanks');
 
 
 

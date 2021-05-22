@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerOrderDetailsMail;
 use App\Models\User;
 use App\Models\Coupon;
 use App\Models\Country;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\DelivaryAddress;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
@@ -15,6 +18,7 @@ use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProductAttributeImage;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
@@ -570,6 +574,88 @@ class ProductController extends Controller
      */
     public function orderPlace(Request $request)
     {
-        return 'order place page';
+        $customer_id = Auth::id();
+        $customer_email = Auth::user()->email;
+
+        //find customer delivary address
+        $delivary_address = DelivaryAddress::where('user_email', $customer_email)->first();
+
+        //check coupon code has or not
+        if (empty(Session::get('coupon_code'))) {
+            $coupon_code = 'Not use';
+        } else {
+            $coupon_code = Session::get('coupon_code');
+        }
+        //check coupon amount has or not
+        if (empty(Session::get('couponAmount'))) {
+            $coupon_amount = '0';
+        } else {
+            $coupon_amount = Session::get('couponAmount');
+        }
+
+        $order = Order::create([
+            'user_id'        => $customer_id,
+            'user_email'     => $customer_email,
+            'name'           => $delivary_address->name,
+            'address'        => $delivary_address->address,
+            'city'           => $delivary_address->city,
+            'state'          => $delivary_address->state,
+            'country'        => $delivary_address->country,
+            'pincode'        => $delivary_address->pincode,
+            'mobile'         => $delivary_address->mobile,
+            'coupon_code'    => $coupon_code,
+            'coupon_amount'  => $coupon_amount,
+            'order_status'   => "New",
+            'payment_method' => $request->payment_method,
+            'grand_total'    => $request->grand_total,
+        ]);
+
+        $order_id = DB::getPdo()->lastinsertID();
+        $carts = DB::table('cart')->where('user_email', $customer_email)->get();
+
+        foreach ($carts as $cart) {
+            OrderProduct::create([
+                'order_id'      => $order_id,
+                'user_id'       => $customer_id,
+                'product_id'    => $cart->product_id,
+                'product_name'  => $cart->product_name,
+                'product_code'  => $cart->product_code,
+                'product_color' => $cart->product_color,
+                'product_size'  => $cart->size,
+                'product_price' => $cart->price,
+                'product_qty'   => $cart->quantity,
+            ]);
+        }
+
+        // Session put order_id and grand_total
+        Session::put('order_id', $order_id);
+        Session::put('grand_total', $request->grand_total);
+
+        //check payment method
+        if ($request->payment_method == 'cod') {
+            // User order details information send to customer email
+            $order_info = [
+                'name' => $delivary_address->name,
+                'email' => $customer_email,
+                'order_id' => $order_id,
+                'order' => $order,
+                'order' => $order,
+                'delivary_address' => $delivary_address,
+            ];
+
+            Mail::to($customer_email)->send(new CustomerOrderDetailsMail($order_info));
+            return redirect()->route('thanks');
+        } elseif ($request->payment_method == 'stripe') {
+        }
+    }
+
+    /**
+     * Customer payment cash on delivary and customer redirect ot thanks page
+     */
+    public function thanks()
+    {
+        $customer_email = Auth::user()->email;
+        DB::table('cart')->where('user_email', $customer_email)->delete();
+        return view('wayshop.customer.thanks');
     }
 }
