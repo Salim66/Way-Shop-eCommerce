@@ -646,6 +646,9 @@ class ProductController extends Controller
             Mail::to($customer_email)->send(new CustomerOrderDetailsMail($order_info));
             return redirect()->route('thanks');
         } elseif ($request->payment_method == 'stripe') {
+            return redirect()->route('stripe');
+        } else {
+            return redirect()->back()->with('error', 'Please choose any payment method!');
         }
     }
 
@@ -660,5 +663,13 @@ class ProductController extends Controller
         $customer_email = Auth::user()->email;
         DB::table('cart')->where('user_email', $customer_email)->delete();
         return view('wayshop.customer.thanks');
+    }
+
+    /**
+     * Customer payment by stripe . this is stripe page
+     */
+    public function stripe()
+    {
+        return  view('wayshop.customer.stripe');
     }
 }

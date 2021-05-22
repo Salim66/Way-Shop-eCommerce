@@ -40,6 +40,8 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::post('/order/place', 'App\Http\Controllers\ProductController@orderPlace')->name('place.order');
     // Routes for customer payment by cash on delivary 
     Route::get('/thanks', 'App\Http\Controllers\ProductController@thanks')->name('thanks');
+    // Routes for customer payment by stripe
+    Route::get('/stripe', 'App\Http\Controllers\ProductController@stripe')->name('stripe');
 
 
 
