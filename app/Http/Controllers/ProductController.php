@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\CustomerOrderDetailsMail;
+use Stripe\Charge;
+use Stripe\Stripe;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Country;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\DelivaryAddress;
-use App\Models\Order;
-use App\Models\OrderProduct;
 use Illuminate\Support\Str;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
+use App\Models\DelivaryAddress;
 use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ProductAttributeImage;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ProductAttributeImage;
 use Intervention\Image\Facades\Image;
+use App\Mail\CustomerOrderDetailsMail;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -657,9 +659,11 @@ class ProductController extends Controller
      */
     public function thanks()
     {
+        // Destroy Session couponAmount and coupon Code
         Session::forget('couponAmount');
         Session::forget('coupon_code');
 
+        // Delete cart data auth customer wise
         $customer_email = Auth::user()->email;
         DB::table('cart')->where('user_email', $customer_email)->delete();
         return view('wayshop.customer.thanks');
@@ -670,6 +674,31 @@ class ProductController extends Controller
      */
     public function stripe()
     {
+        // Destroy Session couponAmount and coupon Code
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
+        // Delete cart data auth customer wise
+        $customer_email = Auth::user()->email;
+        DB::table('cart')->where('user_email', $customer_email)->delete();
         return  view('wayshop.customer.stripe');
+    }
+
+    /**
+     * Customer stripe payment store
+     */
+    public function stripeStore(Request $request)
+    {
+        \Stripe\Stripe::setApiKey('sk_test_51IqXv3EoWX3oGO2nRobu2UmZMPhYjZEAms1dRVCiwa3JaQjd9ycDoQpFM1JL9icOZ0yiZZ80JZ2R4763p0j1DjoG00q2vtwV1l');
+
+        $token = $request->stripeToken;
+        $charge = \Stripe\Charge::Create([
+            'amount' => $request->total_amount * 100,
+            'currency' => 'usd',
+            'description' => $request->name,
+            'source' => $token,
+        ]);
+
+        return redirect()->back()->with('success', 'Payment successfully done ): ');
     }
 }

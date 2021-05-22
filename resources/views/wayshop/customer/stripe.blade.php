@@ -18,7 +18,7 @@
             <div class="col-lg-6">
                 <script src="https://js.stripe.com/v3/"></script>
 
-                <form action="" method="POST" id="payment-form">
+                <form action="{{ route('stripe.store') }}" method="POST" id="payment-form">
                     @csrf
                     <div class="form-row">
                         <b>Total Amount To Be Paid</b>
@@ -116,3 +116,8 @@
 
 <!-- End Cart -->
 @endsection
+
+@php
+Session::forget('order_id');
+Session::forget('grand_total');
+@endphp

@@ -42,6 +42,8 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/thanks', 'App\Http\Controllers\ProductController@thanks')->name('thanks');
     // Routes for customer payment by stripe
     Route::get('/stripe', 'App\Http\Controllers\ProductController@stripe')->name('stripe');
+    // Route for customer stripe payment meethod store
+    Route::post('/stripe/store', 'App\Http\Controllers\ProductController@stripeStore')->name('stripe.store');
 
 
 
