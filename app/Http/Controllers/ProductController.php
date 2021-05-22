@@ -716,6 +716,9 @@ class ProductController extends Controller
      */
     public function customerOrderProductDetails($order_id)
     {
-        return $order_id;
+        $orderDetails = Order::where('id', $order_id)->first();
+        $user_id = $orderDetails->user_id;
+        $user = User::find($user_id);
+        return view('wayshop.customer.customer_order_details', compact('orderDetails', 'user'));
     }
 }
