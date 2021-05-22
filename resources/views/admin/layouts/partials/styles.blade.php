@@ -40,6 +40,8 @@
     type="text/css" />
 <!-- Sweetalert -->
 <link href="{{ asset('admin/assets/')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+<!-- include summernote css -->
+<link href="{{ asset('admin/assets/')}}/dist/css/summernote.min.css" rel="stylesheet" type="text/css" />
 <!--=====================================================================-->
 <!-- Datatable CSS -->
 <link href="{{ asset('admin/assets/')}}/dist/css/datatables.min.css" rel="stylesheet" type="text/css" />

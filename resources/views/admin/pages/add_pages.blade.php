@@ -74,8 +74,7 @@
                             </div>
                             <div class="form-group col-sm-12">
                                 <label>Long Content</label>
-                                <textarea name="long_content" id="long_content" rows="2"
-                                    class="form-control"></textarea>
+                                <textarea name="long_content" id="summernote" rows="5" class="form-control"></textarea>
                                 <span
                                     class="text-danger">{{ (@$errors->has('long_content'))? @$errors->first('long_content') : '' }}</span>
                             </div>

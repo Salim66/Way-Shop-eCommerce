@@ -3,6 +3,10 @@
 
         //datatable
         $('table#datatable').DataTable();
+        //summernote editor
+        $('#summernote').summernote({
+            height: 300,
+        });
 
         //user status update
         $('.user_status_update').change(function (event) { 
