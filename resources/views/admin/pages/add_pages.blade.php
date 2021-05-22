@@ -31,13 +31,23 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-6">
+                                <label>Page Parent</label>
+                                <select name="page_parent" id="page_parent" class="form-control">
+                                    <option value="">Home</option>
+                                    <option value="">About</option>
+                                    <option value="">Contact</option>
+                                </select>
+                                <span
+                                    class="text-danger">{{ (@$errors->has('page_name'))? @$errors->first('page_name') : '' }}</span>
+                            </div>
+                            <div class="form-group col-sm-6">
                                 <label>Page Name</label>
                                 <input type="text" name="page_name" id="page_name" class="form-control"
                                     placeholder="Page Name">
                                 <span
                                     class="text-danger">{{ (@$errors->has('page_name'))? @$errors->first('page_name') : '' }}</span>
                             </div>
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-12">
                                 <label>Meta Title</label>
                                 <input type="text" name="meta_title" id="meta_title" class="form-control"
                                     placeholder="Meta Title">
@@ -50,6 +60,13 @@
                                     placeholder="Meta Keywords">
                                 <span
                                     class="text-danger">{{ (@$errors->has('meta_keywords'))? @$errors->first('meta_keywords') : '' }}</span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Sort Order</label>
+                                <input type="text" name="sort_order" id="sort_order" class="form-control"
+                                    placeholder="Sort Order">
+                                <span
+                                    class="text-danger">{{ (@$errors->has('sort_order'))? @$errors->first('sort_order') : '' }}</span>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label>Meta Description</label>
