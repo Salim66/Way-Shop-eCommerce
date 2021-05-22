@@ -654,6 +654,9 @@ class ProductController extends Controller
      */
     public function thanks()
     {
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
         $customer_email = Auth::user()->email;
         DB::table('cart')->where('user_email', $customer_email)->delete();
         return view('wayshop.customer.thanks');
