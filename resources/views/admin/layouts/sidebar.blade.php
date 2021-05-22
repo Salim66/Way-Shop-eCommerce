@@ -101,6 +101,14 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('orders.view') }}">View Orders</a></li>
                 </ul>
             </li>
+            <li class="treeview {{(@$prefix == '/pages')? 'active' : ""}}">
+                <a href="{{ route('pages') }}">
+                    <i class="fa fa-file"></i><span>CMS Pages</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar -->

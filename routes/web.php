@@ -159,4 +159,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/view/detials/{order_id}', 'App\Http\Controllers\ProductController@adimnPanelOrdersViewDetails')->name('orders.details');
         Route::post('/status/update', 'App\Http\Controllers\ProductController@adimnPanelCustomerOrderStatusUpdate')->name('orders.status.update');
     });
+
+    //Routes for CMS pages
+    Route::prefix('pages')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\PagesController@pages')->name('pages');
+    });
 });
