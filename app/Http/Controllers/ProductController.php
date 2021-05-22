@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Coupon;
+use App\Models\Country;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Coupon;
+use App\Models\DelivaryAddress;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
 use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProductAttributeImage;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
@@ -481,5 +484,16 @@ class ProductController extends Controller
                 }
             }
         }
+    }
+
+    /**
+     * Cutomer billing and shipping information page
+     */
+    public function cutomerbillingShippingPage()
+    {
+        $bill = User::find(Auth::id());
+        $countries = Country::all();
+        $shipp = DelivaryAddress::where('user_email', $bill->email)->where('user_id', $bill->id)->first();
+        return view('wayshop.customer.billing_shipping_information', compact('bill', 'countries', 'shipp'));
     }
 }

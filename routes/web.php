@@ -16,6 +16,9 @@ Route::post('/customer/login', 'App\Http\Controllers\CustomerController@customer
 
 //Authenticate front end customer and importend link
 Route::middleware(['auth', 'customer'])->group(function () {
+    // Routes for single product select size wise price search
+    Route::get('/products/size_attribute_to_price_search', 'App\Http\Controllers\ProductController@sizeSelectToPrice');
+
     // Routes for add to cart session and store cart
     Route::post('/cart/add', 'App\Http\Controllers\ProductController@addCartStore')->name('cart.add');
     //Routes for cart show page
@@ -27,13 +30,12 @@ Route::middleware(['auth', 'customer'])->group(function () {
     //Routes for cart product delete
     Route::get('/cart/product/delete/{id}', 'App\Http\Controllers\ProductController@cartProductDelete')->name('cart.product.delete');
 
-    // Routes for single product select size wise price search
-    Route::get('/products/size_attribute_to_price_search', 'App\Http\Controllers\ProductController@sizeSelectToPrice');
+    // Routes for customer checkout billing and shipping information page
+    Route::get('/customer/checkout', 'App\Http\Controllers\ProductController@cutomerbillingShippingPage')->name('customer.checkout');
 
 
 
-
-
+    // Routes for customer account
     Route::get('/customer/confirm/account/{code}', 'App\Http\Controllers\CustomerController@customerRegistationEmailConfirm')->name('customer.email.confirm');
     Route::get('/customer/account', 'App\Http\Controllers\CustomerController@customerAccount')->name('customer.account');
     Route::get('/customer/address/edit', 'App\Http\Controllers\CustomerController@customerAddressEdit')->name('customer.address.edit');

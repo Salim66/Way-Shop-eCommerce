@@ -136,7 +136,8 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a>
+            <div class="col-12 d-flex shopping-box"><a href="{{ route('customer.checkout') }}"
+                    class="ml-auto btn hvr-hover">Checkout</a>
             </div>
         </div>
 
