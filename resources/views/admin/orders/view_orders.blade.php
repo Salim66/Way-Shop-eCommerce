@@ -66,7 +66,8 @@
                                         <td>{{ $order->order_status }}</td>
                                         <td>{{ $order->payment_method }}</td>
                                         <td>
-                                            <a target="_blank" class="btn btn-primary btn-sm" href="">View Order
+                                            <a target="_blank" class="btn btn-primary btn-sm"
+                                                href="{{ route('orders.details', $order->id) }}">View Order
                                                 Details</a>
                                         </td>
 

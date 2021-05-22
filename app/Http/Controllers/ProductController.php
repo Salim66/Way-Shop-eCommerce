@@ -730,4 +730,15 @@ class ProductController extends Controller
         $orders = Order::latest()->get();
         return view('admin.orders.view_orders', compact('orders'));
     }
+
+    /**
+     * Admin panel customer order detials
+     */
+    public function adimnPanelOrdersViewDetails($order_id)
+    {
+        $orderDetails = Order::where('id', $order_id)->first();
+        $user_id = $orderDetails->user_id;
+        $user = User::find($user_id);
+        return view('admin.orders.view_orders_detials', compact('orderDetails', 'user'));
+    }
 }
