@@ -162,6 +162,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //Routes for CMS pages
     Route::prefix('pages')->group(function () {
-        Route::get('/view', 'App\Http\Controllers\PagesController@pages')->name('pages');
+        Route::get('/view', 'App\Http\Controllers\PagesController@view')->name('pages.view');
+        Route::get('/add', 'App\Http\Controllers\PagesController@add')->name('pages.add');
     });
 });

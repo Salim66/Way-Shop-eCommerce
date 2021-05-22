@@ -102,12 +102,16 @@ $route = Route::current()->getName();
                 </ul>
             </li>
             <li class="treeview {{(@$prefix == '/pages')? 'active' : ""}}">
-                <a href="{{ route('pages') }}">
+                <a href="#">
                     <i class="fa fa-file"></i><span>CMS Pages</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('pages.view') }}">View Pages</a></li>
+                    <li><a href="{{ route('pages.add') }}">Add Pages</a></li>
+                </ul>
             </li>
         </ul>
     </div>

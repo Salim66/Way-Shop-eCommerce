@@ -30,7 +30,7 @@
                         <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                         <div class="btn-group">
                             <div class="buttonexport">
-                                <a href="" class="btn btn-add"><i class="fa fa-plus"></i>
+                                <a href="{{ route('pages.add') }}" class="btn btn-add"><i class="fa fa-plus"></i>
                                     Add
                                     Page</a>
                             </div>
