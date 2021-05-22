@@ -90,6 +90,17 @@ $route = Route::current()->getName();
                     <li><a href="{{ route('coupons.add') }}">Add Coupon</a></li>
                 </ul>
             </li>
+            <li class="treeview {{(@$prefix == '/orders')? 'active' : ""}}">
+                <a href="#">
+                    <i class="pe-7s-cart"></i><span>Orders</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('orders.view') }}">View Orders</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar -->

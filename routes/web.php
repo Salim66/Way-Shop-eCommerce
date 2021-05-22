@@ -152,4 +152,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/edit/{id}', 'App\Http\Controllers\CouponController@edit')->name('coupons.edit');
         Route::put('/update/{id}', 'App\Http\Controllers\CouponController@update')->name('coupons.update');
     });
+
+    //Routes for customer orders
+    Route::prefix('orders')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\ProductController@adimnPanelOrdersView')->name('orders.view');
+    });
 });

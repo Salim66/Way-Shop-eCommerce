@@ -721,4 +721,13 @@ class ProductController extends Controller
         $user = User::find($user_id);
         return view('wayshop.customer.customer_order_details', compact('orderDetails', 'user'));
     }
+
+    /**
+     * Admin panel customer order list show
+     */
+    public function adimnPanelOrdersView()
+    {
+        $orders = Order::latest()->get();
+        return view('admin.orders.view_orders', compact('orders'));
+    }
 }
