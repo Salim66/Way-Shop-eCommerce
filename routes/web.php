@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 Route::get('/single-product/{slug}', 'App\Http\Controllers\IndexController@singleProduct')->name('single.product');
 Route::post('/product/search', 'App\Http\Controllers\IndexController@productSearch')->name('product.search');
+Route::get('/product/category/{slug}', 'App\Http\Controllers\IndexController@productCategoryWiseSearch')->name('category.wise.product.search');
 
 
 

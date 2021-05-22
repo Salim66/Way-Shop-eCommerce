@@ -57,7 +57,7 @@
                                 <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
                                     <div class="list-group">
                                         @foreach($category->categories as $sub_category)
-                                        <a href="#"
+                                        <a href="{{ route('category.wise.product.search', $sub_category->slug) }}"
                                             class="list-group-item list-group-item-action active">{{ $sub_category->name }}
                                             <small class="text-muted">({{ $sub_category->products_count }})</small></a>
                                         @endforeach
