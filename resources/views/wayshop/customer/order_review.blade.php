@@ -177,7 +177,7 @@
             </div>
         </div>
 
-        <form action="" method="POST">
+        <form action="{{ route('place.order') }}" method="POST">
             @csrf
             <hr class="mb-4">
             <div class="title-left">

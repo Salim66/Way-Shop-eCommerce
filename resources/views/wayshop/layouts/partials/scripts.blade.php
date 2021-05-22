@@ -34,3 +34,15 @@
     });
 </script>
 @endif
+
+<script type="text/javascript">
+    // check select or not payment method
+    function selectPaymentMethod(){
+            if($('#cod').is(':checked') || $('#stripe').is(':checked')){
+                // alert('check');
+            }else {
+                $.notify("Please select any payment method.", {globalPosition: 'top right', className: 'warning'});
+                return false;
+            }
+        } 
+</script>

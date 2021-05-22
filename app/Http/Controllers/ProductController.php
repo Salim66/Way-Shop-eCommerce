@@ -564,4 +564,12 @@ class ProductController extends Controller
         }
         return view('wayshop.customer.order_review', compact('bill', 'shipp', 'countries', 'customer_cart'));
     }
+
+    /**
+     * Custome order place cash on delivary or stripe
+     */
+    public function orderPlace(Request $request)
+    {
+        return 'order place page';
+    }
 }
