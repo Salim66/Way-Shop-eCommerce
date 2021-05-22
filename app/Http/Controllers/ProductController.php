@@ -523,13 +523,13 @@ class ProductController extends Controller
             $customer_delivary = DelivaryAddress::where('user_id', $customer_info->id)->first();
             $customer_delivary->user_id    = $customer_info->id;
             $customer_delivary->user_email = $customer_info->email;
-            $customer_delivary->name       = $request->name;
-            $customer_delivary->address    = $request->address;
-            $customer_delivary->city       = $request->city;
-            $customer_delivary->state      = $request->state;
-            $customer_delivary->country    = $request->country;
-            $customer_delivary->pincode    = $request->pincode;
-            $customer_delivary->mobile     = $request->mobile;
+            $customer_delivary->name       = $request->shipping_name;
+            $customer_delivary->address    = $request->shipping_address;
+            $customer_delivary->city       = $request->shipping_city;
+            $customer_delivary->state      = $request->shipping_state;
+            $customer_delivary->country    = $request->shipping_country;
+            $customer_delivary->pincode    = $request->shipping_pincode;
+            $customer_delivary->mobile     = $request->shipping_mobile;
             $customer_delivary->update();
         } else {
             DelivaryAddress::create([
@@ -553,6 +553,15 @@ class ProductController extends Controller
      */
     public function cutomerOrderReviewPage()
     {
-        return 'order review page';
+        $bill = User::where('id', Auth::id())->first();
+        $shipp = DelivaryAddress::where('user_id', Auth::id())->first();
+        $countries = Country::all();
+        $customer_cart = DB::table('cart')->where('user_email', Auth::user()->email)->get();
+        // Add image into cart last column
+        foreach ($customer_cart as $key => $cart) {
+            $product = Product::where('id', $cart->product_id)->first();
+            $customer_cart[$key]->image = $product->image;
+        }
+        return view('wayshop.customer.order_review', compact('bill', 'shipp', 'countries', 'customer_cart'));
     }
 }
