@@ -32,4 +32,18 @@ class IndexController extends Controller
         $data = Product::where('slug', $slug)->first();
         return view('wayshop.single_product', compact('data'));
     }
+
+    /**
+     * Product search
+     */
+    public function productSearch(Request $request)
+    {
+        $search = $request->search;
+        $products = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(6);
+        $categories = Category::whereNULL('parent_id')->with(['categories' => function ($query) {
+            $query->withCount('products');
+        }]);
+        $banners = Banner::all();
+        return view('wayshop.search', compact('products', 'categories', 'banners'));
+    }
 }
