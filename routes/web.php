@@ -157,5 +157,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('orders')->group(function () {
         Route::get('/view', 'App\Http\Controllers\ProductController@adimnPanelOrdersView')->name('orders.view');
         Route::get('/view/detials/{order_id}', 'App\Http\Controllers\ProductController@adimnPanelOrdersViewDetails')->name('orders.details');
+        Route::post('/status/update', 'App\Http\Controllers\ProductController@adimnPanelCustomerOrderStatusUpdate')->name('orders.status.update');
     });
 });

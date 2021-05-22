@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('orders.status.update') }}" method="POST">
                             @csrf
                             <input type="hidden" name="order_id" value="{{ $orderDetails->id }}">
                             <table style="width: 100%">

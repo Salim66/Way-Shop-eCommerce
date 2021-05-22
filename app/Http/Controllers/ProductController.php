@@ -741,4 +741,20 @@ class ProductController extends Controller
         $user = User::find($user_id);
         return view('admin.orders.view_orders_detials', compact('orderDetails', 'user'));
     }
+
+    /**
+     * Admin panel customer order status update
+     */
+    public function adimnPanelCustomerOrderStatusUpdate(Request $request)
+    {
+        $order_id = $request->order_id;
+        $order = Order::find($order_id);
+        if ($order != NULL) {
+            $order->order_status = $request->order_status;
+            $order->update();
+            return  redirect()->back()->with('success', 'Order status updated successfully ): ');
+        } else {
+            return redirect()->back()->with('error', 'Sorry! does not found any data!');
+        }
+    }
 }
