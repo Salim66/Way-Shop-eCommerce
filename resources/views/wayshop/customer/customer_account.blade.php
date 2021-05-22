@@ -41,7 +41,7 @@
                     <div class="account-box">
                         <div class="service-box">
                             <div class="service-icon">
-                                <a href=""> <i class="fa fa-gift"></i> </a>
+                                <a href="{{ route('customer.order.list') }}"> <i class="fa fa-gift"></i> </a>
                             </div>
                             <div class="service-desc">
                                 <h4>Your Orders</h4>

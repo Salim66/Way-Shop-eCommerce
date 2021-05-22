@@ -701,4 +701,21 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Payment successfully done ): ');
     }
+
+    /**
+     * Customer order list page
+     */
+    public function customerOrderList()
+    {
+        $orders = Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        return view('wayshop.customer.customer_order_list', compact('orders'));
+    }
+
+    /**
+     * Customer product order detials
+     */
+    public function customerOrderProductDetails($order_id)
+    {
+        return $order_id;
+    }
 }
