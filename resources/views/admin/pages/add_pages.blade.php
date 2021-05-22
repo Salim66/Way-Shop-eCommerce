@@ -27,7 +27,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="POST" class="col-sm-12" id="pagesAddForm" enctype="multipart/form-data">
+                        <form action="{{ route('pages.store') }}" method="POST" class="col-sm-12" id="pagesAddForm"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-6">
                                 <label>Page Name</label>

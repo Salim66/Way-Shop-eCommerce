@@ -164,5 +164,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('pages')->group(function () {
         Route::get('/view', 'App\Http\Controllers\PagesController@view')->name('pages.view');
         Route::get('/add', 'App\Http\Controllers\PagesController@add')->name('pages.add');
+        Route::post('/store', 'App\Http\Controllers\PagesController@store')->name('pages.store');
     });
 });
