@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pages;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -11,6 +12,7 @@ class PagesController extends Controller
      */
     public function pages()
     {
-        return 'CMS Pages';
+        $all_data = Pages::latest()->get();
+        return view('admin.pages.view_pages', compact('all_data'));
     }
 }
