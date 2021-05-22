@@ -70,7 +70,7 @@
                                     <p>$ {{ $cart->price * $cart->quantity }}</p>
                                 </td>
                                 <td class="remove-pr">
-                                    <a href="#">
+                                    <a href="{{ route('cart.product.delete', $cart->id) }}">
                                         <i class="fas fa-times"></i>
                                     </a>
                                 </td>

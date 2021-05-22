@@ -24,6 +24,10 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::post('/cart/apply-coupon', 'App\Http\Controllers\ProductController@applyCoupon')->name('cart.apply_coupon');
     //Routes for cart product quantity update
     Route::get('/cart/product_quantity/update/{id}/{quantity}', 'App\Http\Controllers\ProductController@cartProductQuantityUpdate');
+    //Routes for cart product delete
+    Route::get('/cart/product/delete/{id}', 'App\Http\Controllers\ProductController@cartProductDelete')->name('cart.product.delete');
+
+    // Routes for single product select size wise price search
     Route::get('/products/size_attribute_to_price_search', 'App\Http\Controllers\ProductController@sizeSelectToPrice');
 
 

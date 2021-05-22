@@ -404,6 +404,19 @@ class ProductController extends Controller
     }
 
     /**
+     * Cart product delete
+     */
+    public function cartProductDelete($id)
+    {
+        // session forget when customer again added to cart another product or same product diffrent size
+        Session::forget('couponAmount');
+        Session::forget('coupon_code');
+
+        DB::table('cart')->where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Product delete from cart successfully ):');
+    }
+
+    /**
      * Cart apply coupon 
      * ===mendatory check before coupon apply===
      * 1. first coupon code valid or not
