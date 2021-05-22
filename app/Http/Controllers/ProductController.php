@@ -496,4 +496,63 @@ class ProductController extends Controller
         $shipp = DelivaryAddress::where('user_email', $bill->email)->where('user_id', $bill->id)->first();
         return view('wayshop.customer.billing_shipping_information', compact('bill', 'countries', 'shipp'));
     }
+
+    /**
+     * Customer billing and shipping information store
+     */
+    public function cutomerbillingShippingStore(Request $request)
+    {
+        $customer_info = User::find(Auth::id());
+        //check shipping addres is exists or not
+        $shippingCount = DelivaryAddress::where('user_id', $customer_info->id)->count();
+
+
+        //find customer and update customer billing info
+        $customer = User::find($customer_info->id);
+        $customer->name     = $request->billing_name;
+        $customer->address  = $request->billing_address;
+        $customer->city     = $request->billing_city;
+        $customer->state    = $request->billing_state;
+        $customer->country  = $request->billing_country;
+        $customer->pincode  = $request->billing_pincode;
+        $customer->mobile   = $request->billing_mobile;
+        $customer->update();
+
+        //if customer shipping address is exists then update shipping address
+        if ($shippingCount > 0) {
+            $customer_delivary = DelivaryAddress::where('user_id', $customer_info->id)->first();
+            $customer_delivary->user_id    = $customer_info->id;
+            $customer_delivary->user_email = $customer_info->email;
+            $customer_delivary->name       = $request->name;
+            $customer_delivary->address    = $request->address;
+            $customer_delivary->city       = $request->city;
+            $customer_delivary->state      = $request->state;
+            $customer_delivary->country    = $request->country;
+            $customer_delivary->pincode    = $request->pincode;
+            $customer_delivary->mobile     = $request->mobile;
+            $customer_delivary->update();
+        } else {
+            DelivaryAddress::create([
+                'user_id'    => $customer_info->id,
+                'user_email' => $customer_info->email,
+                'name'       => $request->shipping_name,
+                'address'    => $request->shipping_address,
+                'city'       => $request->shipping_city,
+                'state'      => $request->shipping_state,
+                'country'    => $request->shipping_country,
+                'pincode'    => $request->shipping_pincode,
+                'mobile'     => $request->shipping_mobile,
+            ]);
+        }
+
+        return redirect()->route('order.review.page')->with('success', 'Billing information added successfully ): ');
+    }
+
+    /**
+     * Customer order review page
+     */
+    public function cutomerOrderReviewPage()
+    {
+        return 'order review page';
+    }
 }

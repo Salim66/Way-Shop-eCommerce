@@ -32,6 +32,10 @@ Route::middleware(['auth', 'customer'])->group(function () {
 
     // Routes for customer checkout billing and shipping information page
     Route::get('/customer/checkout', 'App\Http\Controllers\ProductController@cutomerbillingShippingPage')->name('customer.checkout');
+    // Routes for customer checkout billing and shipping information store
+    Route::post('/customer/checkout/store', 'App\Http\Controllers\ProductController@cutomerbillingShippingStore')->name('customer.checkout.store');
+    // Routes for customer checkout billing and shipping information store
+    Route::get('/order/review', 'App\Http\Controllers\ProductController@cutomerOrderReviewPage')->name('order.review.page');
 
 
 

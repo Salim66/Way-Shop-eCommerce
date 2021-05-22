@@ -5,7 +5,7 @@
 @section('main-content')
 <div class="contact-box-main">
     <div class="container">
-        <form action="" method="POST">
+        <form action="{{ route('customer.checkout.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
